@@ -25,9 +25,9 @@ Ce document définit la feuille de route séquentielle pour le développement du
 *Objectif : Permettre aux coachs de s'inscrire et d'accéder à l'interface.*
 
 ### 1.1. Authentification
-- [ ] **Auth Pages** : Login, Register, Forgot Password (Design "Midnight Control").
-- [ ] **Supabase Auth** : Intégration du flow Email/Password et Google OAuth.
-- [ ] **Middleware** : Protection des routes `/dashboard` (redirection si non authentifié).
+- [x] **Auth Pages** : Login, Register, Forgot Password (Design "Midnight Control").
+- [x] **Supabase Auth** : Intégration du flow Email/Password et Google OAuth.
+- [x] **Middleware** : Protection des routes `/dashboard` (redirection si non authentifié).
 
 ### 1.2. Onboarding & Profil
 - [ ] **Wizard Onboarding** : Formulaire multi-étapes (Nom entreprise, Logo, Spécialités).

@@ -18,5 +18,21 @@
     "Dashboard": {
         "title": "Mon Tableau de Bord",
         "welcome": "Bienvenue,"
+    },
+    "Onboarding": {
+        "title": "Bienvenue sur FitTracker Coach",
+        "description": "Configurons votre profil professionnel en quelques étapes.",
+        "step1Title": "Identité Professionnelle",
+        "step2Title": "Spécialités",
+        "businessName": "Nom de l'entreprise / Marque",
+        "website": "Site Web (Optionnel)",
+        "logo": "Logo",
+        "logoDescription": "Téléchargez un logo professionnel (Max 2MB)",
+        "specialtiesLabel": "Vos Spécialités",
+        "specialtiesPlaceholder": "ex: Hypertrophie, Powerlifting...",
+        "next": "Continuer",
+        "back": "Retour",
+        "finish": "Terminer",
+        "uploading": "Téléchargement..."
     }
 }

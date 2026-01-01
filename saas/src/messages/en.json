@@ -18,5 +18,21 @@
     "Dashboard": {
         "title": "My Dashboard",
         "welcome": "Welcome,"
+    },
+    "Onboarding": {
+        "title": "Welcome to FitTracker Coach",
+        "description": "Let's set up your professional profile in a few steps.",
+        "step1Title": "Professional Identity",
+        "step2Title": "Specialties",
+        "businessName": "Business Name",
+        "website": "Website (Optional)",
+        "logo": "Logo",
+        "logoDescription": "Upload a professional logo (Max 2MB)",
+        "specialtiesLabel": "Your Specialties",
+        "specialtiesPlaceholder": "e.g. Hypertrophy, Powerlifting...",
+        "next": "Continue",
+        "back": "Back",
+        "finish": "Complete Setup",
+        "uploading": "Uploading..."
     }
 }

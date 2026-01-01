@@ -182,8 +182,12 @@ export type Database = {
           email: string
           full_name: string | null
           id: string
+          logo_url: string | null
+          onboarding_completed: boolean | null
           settings: Json | null
+          specialties: string[] | null
           subscription_tier: string | null
+          website: string | null
         }
         Insert: {
           business_name?: string | null
@@ -191,8 +195,12 @@ export type Database = {
           email: string
           full_name?: string | null
           id: string
+          logo_url?: string | null
+          onboarding_completed?: boolean | null
           settings?: Json | null
+          specialties?: string[] | null
           subscription_tier?: string | null
+          website?: string | null
         }
         Update: {
           business_name?: string | null
@@ -200,8 +208,12 @@ export type Database = {
           email?: string
           full_name?: string | null
           id?: string
+          logo_url?: string | null
+          onboarding_completed?: boolean | null
           settings?: Json | null
+          specialties?: string[] | null
           subscription_tier?: string | null
+          website?: string | null
         }
         Relationships: []
       }

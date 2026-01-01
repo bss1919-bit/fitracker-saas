@@ -18,5 +18,21 @@
     "Dashboard": {
         "title": "لوحة التحكم",
         "welcome": "مرحباً،"
+    },
+    "Onboarding": {
+        "title": "مرحباً بك في FitTracker Coach",
+        "description": "دعنا نجهز ملفك المهني في بضع خطوات.",
+        "step1Title": "الهوية المهنية",
+        "step2Title": "التخصصات",
+        "businessName": "اسم العمل / العلامة التجارية",
+        "website": "الموقع الإلكتروني (اختياري)",
+        "logo": "الشعار",
+        "logoDescription": "قم بتحديث شعار احترافي (الحد الأقصى 2 ميغابايت)",
+        "specialtiesLabel": "تخصصاتك",
+        "specialtiesPlaceholder": "مثال: تضخيم العضلات، رفع الأثقال...",
+        "next": "متابعة",
+        "back": "رجوع",
+        "finish": "إكمال الإعداد",
+        "uploading": "جار الرفع..."
     }
 }

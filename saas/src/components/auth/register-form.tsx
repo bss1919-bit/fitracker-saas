@@ -90,9 +90,8 @@ export function RegisterForm() {
 
         toast.success(t('registerTitle')); // reusing title or success message
 
-        // Redirect to onboarding (or dashboard if we skip onboarding for now)
-        // We'll direct to dashboard for now, onboarding comes next step.
-        router.push('/dashboard');
+        // Redirect to onboarding
+        router.push('/onboarding');
         router.refresh();
     }
 
