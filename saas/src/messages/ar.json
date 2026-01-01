@@ -5,6 +5,18 @@
         "email": "البريد الإلكتروني",
         "password": "كلمة المرور",
         "signIn": "تسجيل الدخول",
-        "loading": "جار التحميل..."
+        "registerTitle": "أنشئ حساب مدرب",
+        "registerDescription": "ابدأ بإدارة رياضييك باحترافية",
+        "fullName": "الاسم الكامل",
+        "confirmPassword": "تأكيد كلمة المرور",
+        "register": "إنشاء حساب",
+        "alreadyHaveAccount": "لديك حساب بالفعل؟ تسجيل الدخول",
+        "noAccount": "ليس لديك حساب؟ تسجيل",
+        "loading": "جار التحميل...",
+        "logout": "تسجيل الخروج"
+    },
+    "Dashboard": {
+        "title": "لوحة التحكم",
+        "welcome": "مرحباً،"
     }
 }

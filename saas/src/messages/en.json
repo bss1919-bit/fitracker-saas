@@ -5,6 +5,18 @@
         "email": "Email",
         "password": "Password",
         "signIn": "Sign In",
-        "loading": "Loading..."
+        "registerTitle": "Create your Coach Account",
+        "registerDescription": "Start managing your athletes like a pro",
+        "fullName": "Full Name",
+        "confirmPassword": "Confirm Password",
+        "register": "Create Account",
+        "alreadyHaveAccount": "Already have an account? Sign In",
+        "noAccount": "Don't have an account? Register",
+        "loading": "Loading...",
+        "logout": "Sign Out"
+    },
+    "Dashboard": {
+        "title": "My Dashboard",
+        "welcome": "Welcome,"
     }
 }
