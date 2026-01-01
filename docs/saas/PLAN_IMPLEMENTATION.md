@@ -8,16 +8,16 @@ Ce document définit la feuille de route séquentielle pour le développement du
 *Objectif : Avoir un socle technique robuste, déployé et sécurisé.*
 
 ### 0.1. Setup Projet & CI/CD
-- [ ] **Init Monorepo/Repo** : Créer le projet Next.js 14 (App Router) avec TypeScript, ESLint, Prettier.
-- [ ] **UI Framework** : Installer Tailwind CSS, Shadcn/UI, Lucide React.
-- [ ] **Internationalisation (i18n)** : Mettre en place `next-intl` et la structure des dossiers `[locale]`. Configurer le support RTL.
-- [ ] **Docker Environment** : Vérifier l'installation de Docker Desktop/Orbstack.
+- [x] **Init Monorepo/Repo** : Créer le projet Next.js 14 (App Router) avec TypeScript, ESLint, Prettier.
+- [x] **UI Framework** : Installer Tailwind CSS, Shadcn/UI, Lucide React.
+- [x] **Internationalisation (i18n)** : Mettre en place `next-intl` et la structure des dossiers `[locale]`. Configurer le support RTL.
+- [x] **Docker Environment** : Vérifier l'installation de Docker Desktop/Orbstack.
 
 ### 0.2. Backend (Supabase Local)
-- [ ] **Supabase CLI** : Init du projet (`supabase init`).
-- [ ] **Local Start** : Démarrage de la stack locale (`supabase start`). Cela lance Postgres, Auth, et Studio UI sur Docker.
-- [ ] **Schema Migration** : Écrire et appliquer les migrations SQL locales.
-- [ ] **Type Generation** : Génération des types depuis la DB locale.
+- [x] **Supabase CLI** : Init du projet (`supabase init`).
+- [x] **Local Start** : Démarrage de la stack locale (`supabase start`). Cela lance Postgres, Auth, et Studio UI sur Docker.
+- [x] **Schema Migration** : Écrire et appliquer les migrations SQL locales.
+- [x] **Type Generation** : Génération des types depuis la DB locale.
 
 ---
 

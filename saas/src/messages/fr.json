@@ -1,0 +1,10 @@
+{
+    "Auth": {
+        "loginTitle": "Bon retour Coach",
+        "loginDescription": "Entrez vos identifiants pour accéder au dashboard",
+        "email": "Email",
+        "password": "Mot de passe",
+        "signIn": "Se connecter",
+        "loading": "Chargement..."
+    }
+}
