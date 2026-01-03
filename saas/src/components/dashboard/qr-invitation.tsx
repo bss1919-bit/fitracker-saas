@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Copy, Check } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { toast } from "sonner"
 
 interface QRInvitationProps {
@@ -15,16 +15,22 @@ interface QRInvitationProps {
 export function QRInvitation({ coachId }: QRInvitationProps) {
     const t = useTranslations("Clients")
     const [copied, setCopied] = useState(false)
+    const [invitationUrl, setInvitationUrl] = useState("")
 
-    // The magic link that redirects to mobile app or landing page
-    const invitationUrl = `${window.location.protocol}//${window.location.host}/join/${coachId}`
+    useEffect(() => {
+        // Construct the URL only on the client side
+        setInvitationUrl(`${window.location.protocol}//${window.location.host}/join/${coachId}`)
+    }, [coachId])
 
     const copyToClipboard = () => {
+        if (!invitationUrl) return;
         navigator.clipboard.writeText(invitationUrl)
         setCopied(true)
         toast.success("Link copied to clipboard")
         setTimeout(() => setCopied(false), 2000)
     }
+
+    if (!invitationUrl) return null;
 
     return (
         <Card className="bg-slate-900 border-slate-800 text-white overflow-hidden">
@@ -42,11 +48,11 @@ export function QRInvitation({ coachId }: QRInvitationProps) {
                         level="H"
                         includeMargin={false}
                         imageSettings={{
-                            src: "/logo.png", // Assuming a logo exists or we can skip
+                            src: "/icon.png",
                             x: undefined,
                             y: undefined,
-                            height: 24,
-                            width: 24,
+                            height: 32,
+                            width: 32,
                             excavate: true,
                         }}
                     />

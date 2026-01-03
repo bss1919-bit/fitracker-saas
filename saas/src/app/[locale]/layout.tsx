@@ -20,8 +20,8 @@ const geistMono = Geist_Mono({
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
-  title: "FitTracker Coach",
-  description: "The professional platform for FitTracker coaches.",
+  title: "FitTracker Pro - Backoffice",
+  description: "The elite platform for professional FitTracker coaches.",
 };
 
 export default async function RootLayout({

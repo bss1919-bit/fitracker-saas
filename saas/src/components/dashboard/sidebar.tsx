@@ -74,7 +74,9 @@ export function Sidebar({ isAdmin }: { isAdmin?: boolean }) {
             )}>
                 <div className="flex flex-col h-full">
                     <div className="p-6">
-                        <div className="font-bold text-xl text-white">FitTracker Coach</div>
+                        <div className="font-black text-2xl tracking-tight text-white">
+                            FitTracker <span className="text-indigo-500">Pro</span>
+                        </div>
                     </div>
 
                     <nav className="flex-1 px-4 space-y-1">

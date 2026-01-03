@@ -55,11 +55,11 @@ Ce document définit la feuille de route séquentielle pour le développement du
 *Objectif : Piloter la plateforme et gérer les utilisateurs (Coachs).*
 
 ### 3.1. Back-Office Admin
-- [ ] **Admin Auth** : Login spécifique ou détection de rôle (table `admins`).
-- [ ] **Admin Layout** : Interface distincte pour l'administration (Navigation latérale différente).
+- [x] **Admin Auth** : Login spécifique ou détection de rôle (table `admins`).
+- [x] **Admin Layout** : Interface distincte pour l'administration (Navigation latérale différente).
 
 ### 3.2. Gestion des Coachs
-- [ ] **Coach List** : Table maîtresse des coachs inscrits (Email, Statut, Offre).
+- [x] **Coach List** : Table maîtresse des coachs inscrits (Email, Statut, Offre).
 - [ ] **Actions Admin** : Boutons pour Suspendre/Bannir/Valider un coach.
 - [ ] **Impersonation** : Fonctionnalité "Log in as Coach" pour le support.
 

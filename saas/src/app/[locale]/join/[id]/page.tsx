@@ -81,10 +81,13 @@ export default async function JoinPage({
                     </CardContent>
                 </Card>
 
-                <footer className="pt-8 flex flex-col items-center space-y-4">
+                <footer className="pt-8 flex flex-col items-center space-y-6">
+                    <div className="font-black text-2xl tracking-tight text-white/50">
+                        FitTracker <span className="text-indigo-500/50">Pro</span>
+                    </div>
                     <div className="flex gap-2">
-                        <CheckCircle2 size={16} className="text-emerald-500" />
-                        <span className="text-xs text-slate-500 italic">Powering professional coaching worldwide</span>
+                        <CheckCircle2 size={16} className="text-emerald-500/50" />
+                        <span className="text-xs text-slate-600 italic">Powering professional coaching worldwide</span>
                     </div>
                 </footer>
             </div>

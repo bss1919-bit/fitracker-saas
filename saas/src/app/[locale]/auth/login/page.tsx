@@ -8,7 +8,12 @@ export default async function LoginPage() {
     const t = await getTranslations('Auth');
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-slate-950 p-4">
+        <div className="min-h-screen flex flex-col items-center justify-center bg-slate-950 p-4 space-y-8">
+            <div className="text-center">
+                <div className="font-black text-4xl tracking-tight text-white">
+                    FitTracker <span className="text-indigo-500">Pro</span>
+                </div>
+            </div>
             <Card className="w-full max-w-md bg-slate-900 border-slate-800 text-slate-100">
                 <CardHeader className="space-y-1">
                     <CardTitle className="text-2xl font-bold text-center text-white">{t('loginTitle')}</CardTitle>
