@@ -1,8 +1,8 @@
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "@/i18n/routing";
-import { Sidebar } from "@/components/dashboard/sidebar";
+import { Sidebar } from "@/components/dashboard/sidebar"; // We might want a different sidebar for admin later
 
-export default async function DashboardLayout({
+export default async function AdminLayout({
     children,
     params
 }: {
@@ -19,28 +19,22 @@ export default async function DashboardLayout({
         return null;
     }
 
-    // Check if onboarding is completed
-    const { data: coach } = await supabase
-        .from('coaches')
-        .select('onboarding_completed')
-        .eq('id', user.id)
-        .single();
-
-    if (coach && !coach.onboarding_completed) {
-        redirect({ href: '/onboarding', locale });
-        return null;
-    }
-
-    // Optional: check if admin for sidebar link
-    const { data: admin } = await supabase
+    // Check if user is an admin
+    const { data: admin, error } = await supabase
         .from('admins')
         .select('role')
         .eq('id', user.id)
         .single();
 
+    if (error || !admin) {
+        // Not an admin, redirect to normal dashboard
+        redirect({ href: '/dashboard', locale });
+        return null;
+    }
+
     return (
         <div className="min-h-screen bg-slate-950">
-            <Sidebar isAdmin={!!admin} />
+            <Sidebar /> {/* For now reuse sidebar, but will adapt it */}
             <div className="lg:pl-64 flex flex-col min-h-screen">
                 <main className="flex-1">
                     {children}

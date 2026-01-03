@@ -40,7 +40,8 @@
         "clients": "Clients",
         "library": "Exercises",
         "programs": "Programs",
-        "settings": "Settings"
+        "settings": "Settings",
+        "admin": "Admin Panel"
     },
     "Clients": {
         "title": "My Clients",
@@ -68,5 +69,18 @@
             "submit": "Create Client"
         },
         "noClients": "No clients found. Start by adding one!"
+    },
+    "Admin": {
+        "title": "Super Admin Panel",
+        "coachesCount": "Total Coaches",
+        "clientsCount": "Total Athletes",
+        "coachesList": "Coach Directory",
+        "table": {
+            "coach": "Coach",
+            "email": "Email",
+            "status": "Status",
+            "joined": "Joined",
+            "actions": "Actions"
+        }
     }
 }

@@ -9,13 +9,14 @@ import {
     Dumbbell,
     Calendar,
     Settings,
+    ShieldCheck,
     Menu,
     X
 } from 'lucide-react';
 import { useState } from 'react';
 import { UserNav } from './user-nav';
 
-export function Sidebar() {
+export function Sidebar({ isAdmin }: { isAdmin?: boolean }) {
     const t = useTranslations('Navigation');
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
@@ -47,6 +48,14 @@ export function Sidebar() {
             icon: Settings,
         },
     ];
+
+    if (isAdmin) {
+        navItems.push({
+            label: t('admin'),
+            href: '/admin',
+            icon: ShieldCheck,
+        });
+    }
 
     return (
         <>
