@@ -16,6 +16,7 @@ export default async function DashboardLayout({
 
     if (!user) {
         redirect({ href: '/auth/login', locale });
+        return null;
     }
 
     // Check if onboarding is completed

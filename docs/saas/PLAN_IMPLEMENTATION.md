@@ -41,7 +41,7 @@ Ce document définit la feuille de route séquentielle pour le développement du
 
 ### 2.1. Gestion Clients (CRUD)
 - [x] **Liste Clients** : Table de données (Shadcn Table) avec filtres, tri et recherche.
-- [ ] **Fiche Client Shell** : Layout de la page détail client (Onglets: Résumé, Programme, Historique).
+- [x] **Fiche Client Shell** : Layout de la page détail client (Onglets: Résumé, Programme, Historique).
 - [x] **Ajout Manuel** : Formulaire de création de client "Ghost" (Non lié).
 
 ### 2.2. QR Code & Invitations
