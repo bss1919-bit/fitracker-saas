@@ -30,9 +30,9 @@ Ce document définit la feuille de route séquentielle pour le développement du
 - [x] **Middleware** : Protection des routes `/dashboard` (redirection si non authentifié).
 
 ### 1.2. Onboarding & Profil
-- [ ] **Wizard Onboarding** : Formulaire multi-étapes (Nom entreprise, Logo, Spécialités).
+- [x] **Wizard Onboarding** : Formulaire multi-étapes (Nom entreprise, Logo, Spécialités).
 - [ ] **Settings** : Page de gestion du profil coach et préférences (Langue, Unités).
-- [ ] **Storage** : Upload du logo entreprise via Supabase Storage.
+- [x] **Storage** : Upload du logo entreprise via Supabase Storage.
 
 ---
 
