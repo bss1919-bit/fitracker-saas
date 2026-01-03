@@ -40,14 +40,14 @@ Ce document définit la feuille de route séquentielle pour le développement du
 *Objectif : Connecter un Coach à un Athlète (Flow Critique).*
 
 ### 2.1. Gestion Clients (CRUD)
-- [ ] **Liste Clients** : Table de données (Shadcn Table) avec filtres, tri et recherche.
+- [x] **Liste Clients** : Table de données (Shadcn Table) avec filtres, tri et recherche.
 - [ ] **Fiche Client Shell** : Layout de la page détail client (Onglets: Résumé, Programme, Historique).
-- [ ] **Ajout Manuel** : Formulaire de création de client "Ghost" (Non lié).
+- [x] **Ajout Manuel** : Formulaire de création de client "Ghost" (Non lié).
 
 ### 2.2. QR Code & Invitations
-- [ ] **Générateur QR** : Composant affichant le QR Code "Pro" du coach (contenant son ID).
-- [ ] **Magic Link** : Logique de génération de lien d'invitation unique.
-- [ ] **Page Landing Invitation** : Page publique `fittracker.pro/join/[id]` qui redirige vers l'app mobile.
+- [x] **Générateur QR** : Composant affichant le QR Code "Pro" du coach (contenant son ID).
+- [x] **Magic Link** : Logique de génération de lien d'invitation unique.
+- [x] **Page Landing Invitation** : Page publique `fittracker.pro/join/[id]` qui redirige vers l'app mobile.
 
 ---
 
