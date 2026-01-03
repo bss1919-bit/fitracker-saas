@@ -5,13 +5,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Calendar, Mail, FileText, Activity } from "lucide-react"
+import { RecentActivity } from "@/components/clients/activity/recent-activity"
 
 export default async function ClientProfilePage({
     params
 }: {
     params: Promise<{ id: string; locale: string }>
 }) {
-    const { id } = await params
+    const { id, locale } = await params
     const supabase = await createClient()
     const t = await getTranslations("Clients")
 
@@ -24,6 +25,16 @@ export default async function ClientProfilePage({
     if (error || !client) {
         notFound()
     }
+
+    // Fetch recent activity
+    const { data: activities } = await supabase
+        .from("synced_data")
+        .select("*")
+        .eq("client_id", id)
+        .order("performed_at", { ascending: false })
+        .limit(5)
+
+    const lastSync = activities?.[0]
 
     return (
         <div className="p-8 max-w-7xl mx-auto space-y-8">
@@ -75,8 +86,19 @@ export default async function ClientProfilePage({
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <p className="text-2xl font-bold">No activity yet</p>
-                                <p className="text-xs text-slate-500 mt-1 italic">Waiting for mobile sync</p>
+                                {lastSync ? (
+                                    <>
+                                        <p className="text-2xl font-bold capitalize">{lastSync.data_type.replace("_", " ")}</p>
+                                        <p className="text-xs text-slate-500 mt-1 italic">
+                                            Synced {new Date(lastSync.updated_at!).toLocaleDateString()}
+                                        </p>
+                                    </>
+                                ) : (
+                                    <>
+                                        <p className="text-2xl font-bold">No activity yet</p>
+                                        <p className="text-xs text-slate-500 mt-1 italic">Waiting for mobile sync</p>
+                                    </>
+                                )}
                             </CardContent>
                         </Card>
 
@@ -93,6 +115,11 @@ export default async function ClientProfilePage({
                                 </p>
                             </CardContent>
                         </Card>
+
+                        <div className="md:col-span-3 space-y-4">
+                            <h3 className="text-lg font-bold text-white">Recent Activity</h3>
+                            <RecentActivity activities={activities || []} locale={locale} />
+                        </div>
                     </div>
                 </TabsContent>
 
@@ -103,8 +130,12 @@ export default async function ClientProfilePage({
                 </TabsContent>
 
                 <TabsContent value="history">
-                    <div className="p-12 bg-slate-900/50 border border-dashed border-slate-800 rounded-2xl text-center">
-                        <p className="text-slate-500">Sync History coming in Phase 4</p>
+                    <div className="space-y-6">
+                        <h3 className="text-lg font-bold text-white">Detailed Sync History</h3>
+                        <RecentActivity activities={activities || []} locale={locale} />
+                        {activities && activities.length > 5 && (
+                            <p className="text-center text-slate-500 text-sm italic">Showing last 5 items. Pagination coming in v1.1</p>
+                        )}
                     </div>
                 </TabsContent>
             </Tabs>

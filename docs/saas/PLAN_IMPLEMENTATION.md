@@ -69,12 +69,16 @@ Ce document définit la feuille de route séquentielle pour le développement du
 *Objectif : Recevoir et stocker les données de l'app mobile.*
 
 ### 4.1. API de Synchronisation (Relay)
-- [ ] **Endpoint `POST /api/sync`** : Route sécurisée recevant les payloads JSON de l'app mobile.
-- [ ] **Validation Zod** : Vérification stricte du format des données entrantes.
-- [ ] **Logic Upsert** : Insérer ou mettre à jour les données dans la table `synced_data` (gestion des doublons).
+- [x] **Endpoint `POST /api/sync`** : Route sécurisée recevant les payloads JSON de l'app mobile.
+- [x] **Validation Zod** : Vérification stricte du format des données entrantes.
+- [x] **Logic Upsert** : Insérer ou mettre à jour les données dans la table `synced_data` (gestion des doublons).
 
 ### 4.2. Sécurité des Données
-- [ ] **RLS Implementation** : Activation et test des Row Level Security policies. Vérifier qu'un coach ne voit QUE ses clients.
+- [x] **RLS Implementation** : Activation et test des Row Level Security policies. Vérifier qu'un coach ne voit QUE ses clients.
+
+### 4.3. Vue "Dernière Activité"
+- [x] **Composant Activity List** : Afficher les entraînements reçus dans la fiche client.
+- [x] **Badges de Statut** : Indicateur visuel "Synchronisé il y a X min".
 
 ---
 
