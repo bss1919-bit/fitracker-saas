@@ -34,5 +34,39 @@
         "back": "Back",
         "finish": "Complete Setup",
         "uploading": "Uploading..."
+    },
+    "Navigation": {
+        "dashboard": "Dashboard",
+        "clients": "Clients",
+        "library": "Exercises",
+        "programs": "Programs",
+        "settings": "Settings"
+    },
+    "Clients": {
+        "title": "My Clients",
+        "addNew": "Add New Client",
+        "searchPlaceholder": "Search by name or email...",
+        "table": {
+            "name": "Name",
+            "email": "Email",
+            "status": "Status",
+            "actions": "Actions",
+            "viewProfile": "View Profile"
+        },
+        "status": {
+            "active": "Active",
+            "inactive": "Inactive",
+            "pending": "Pending"
+        },
+        "form": {
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "email": "Email (Optional)",
+            "notes": "Notes",
+            "createSuccess": "Client created successfully",
+            "createError": "Error creating client",
+            "submit": "Create Client"
+        },
+        "noClients": "No clients found. Start by adding one!"
     }
 }

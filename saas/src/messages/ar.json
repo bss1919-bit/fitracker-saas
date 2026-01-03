@@ -34,5 +34,39 @@
         "back": "رجوع",
         "finish": "إكمال الإعداد",
         "uploading": "جار الرفع..."
+    },
+    "Navigation": {
+        "dashboard": "لوحة التحكم",
+        "clients": "العملاء",
+        "library": "التمارين",
+        "programs": "البرامج",
+        "settings": "الإعدادات"
+    },
+    "Clients": {
+        "title": "عملائي",
+        "addNew": "إضافة عميل جديد",
+        "searchPlaceholder": "البحث بالاسم أو البريد الإلكتروني...",
+        "table": {
+            "name": "الاسم",
+            "email": "البريد الإلكتروني",
+            "status": "الحالة",
+            "actions": "إجراءات",
+            "viewProfile": "عرض الملف الشخصي"
+        },
+        "status": {
+            "active": "نشط",
+            "inactive": "غير نشط",
+            "pending": "قيد الانتظار"
+        },
+        "form": {
+            "firstName": "الاسم الأول",
+            "lastName": "اسم العائلة",
+            "email": "البريد الإلكتروني (اختياري)",
+            "notes": "ملاحظات",
+            "createSuccess": "تم إنشاء العميل بنجاح",
+            "createError": "خطأ في إنشاء العميل",
+            "submit": "إنشاء عميل"
+        },
+        "noClients": "لم يتم العثور على عملاء. ابدأ بإضافة واحد!"
     }
 }

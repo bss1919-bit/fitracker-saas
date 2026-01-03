@@ -34,5 +34,39 @@
         "back": "Retour",
         "finish": "Terminer",
         "uploading": "Téléchargement..."
+    },
+    "Navigation": {
+        "dashboard": "Dashboard",
+        "clients": "Clients",
+        "library": "Exercices",
+        "programs": "Programmes",
+        "settings": "Paramètres"
+    },
+    "Clients": {
+        "title": "Mes Clients",
+        "addNew": "Ajouter un client",
+        "searchPlaceholder": "Rechercher par nom ou email...",
+        "table": {
+            "name": "Nom",
+            "email": "Email",
+            "status": "Statut",
+            "actions": "Actions",
+            "viewProfile": "Voir profil"
+        },
+        "status": {
+            "active": "Actif",
+            "inactive": "Inactif",
+            "pending": "En attente"
+        },
+        "form": {
+            "firstName": "Prénom",
+            "lastName": "Nom",
+            "email": "Email (Optionnel)",
+            "notes": "Notes",
+            "createSuccess": "Client créé avec succès",
+            "createError": "Erreur lors de la création du client",
+            "submit": "Créer le client"
+        },
+        "noClients": "Aucun client trouvé. Commencez par en ajouter un !"
     }
 }
