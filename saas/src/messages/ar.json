@@ -132,7 +132,10 @@
             "synced": "تمت المزامنة في {date}",
             "syncConfiguration": "إعداد المزامنة",
             "tokenLabel": "رمز مزامنة العميل",
-            "syncInstructions": "يجب على العميل إدخال هذا الرمز في تطبيق الهاتف لمزامنة بياناته مع لوحة التحكم الخاصة بك."
+            "syncInstructions": "يجب على العميل إدخال هذا الرمز في تطبيق الهاتف لمزامنة بياناته مع لوحة التحكم الخاصة بك.",
+            "noProgramAssigned": "لا يوجد برنامج معين",
+            "noProgramAssignedDesc": "قم بتعيين برنامج لمساعدة هذا الرياضي على تحقيق أهدافه.",
+            "noDescription": "لا يوجد وصف متاح."
         },
         "analytics": {
             "volumeTitle": "حجم التدريب",
@@ -150,7 +153,10 @@
             "success": "تم تعيين البرنامج بنجاح",
             "error": "فشل تعيين البرنامج",
             "selectProgramError": "يرجى اختيار برنامج",
-            "paginationComingSoon": "عرض آخر 5 عناصر. التصفح (Pagination) قادم في الإصدار 1.1"
+            "paginationComingSoon": "عرض آخر 5 عناصر. التصفح (Pagination) قادم في الإصدار 1.1",
+            "status": "الحالة",
+            "assignedOn": "تم التعيين في",
+            "viewFullDetails": "عرض التفاصيل الكاملة"
         }
     },
     "Admin": {

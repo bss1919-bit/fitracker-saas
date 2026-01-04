@@ -68,15 +68,15 @@ export function ClientAnalytics({ activities, locale }: ClientAnalyticsProps) {
 
     return (
         <div className="space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Card className="bg-slate-900 border-slate-800 text-white">
-                    <CardHeader>
-                        <CardTitle className="text-sm font-medium text-slate-400 flex items-center gap-2">
-                            <TrendingUp size={16} className="text-emerald-400" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <Card className="bg-slate-900 border-slate-800 text-white rounded-3xl overflow-hidden shadow-2xl shadow-black/50 border-2 border-indigo-500/10">
+                    <CardHeader className="bg-slate-950/50 border-b border-slate-800">
+                        <CardTitle className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
+                            <TrendingUp size={14} className="text-emerald-400" />
                             {t("volumeTitle")}
                         </CardTitle>
                     </CardHeader>
-                    <CardContent className="h-[300px] pt-4">
+                    <CardContent className="h-[350px] p-8">
                         <ResponsiveContainer width="100%" height="100%">
                             <AreaChart data={volumeData}>
                                 <defs>
@@ -92,6 +92,7 @@ export function ClientAnalytics({ activities, locale }: ClientAnalyticsProps) {
                                     fontSize={10}
                                     tickLine={false}
                                     axisLine={false}
+                                    dy={10}
                                 />
                                 <YAxis
                                     stroke="#475569"
@@ -101,14 +102,19 @@ export function ClientAnalytics({ activities, locale }: ClientAnalyticsProps) {
                                     tickFormatter={(value) => `${value}kg`}
                                 />
                                 <Tooltip
-                                    contentStyle={{ backgroundColor: '#0f172a', border: '1px solid #1e293b', borderRadius: '8px' }}
+                                    contentStyle={{
+                                        backgroundColor: '#0f172a',
+                                        border: '1px solid #1e293b',
+                                        borderRadius: '12px',
+                                        boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.1)'
+                                    }}
                                     itemStyle={{ color: '#818cf8', fontWeight: 'bold' }}
                                 />
                                 <Area
                                     type="monotone"
                                     dataKey="volume"
                                     stroke="#6366f1"
-                                    strokeWidth={3}
+                                    strokeWidth={4}
                                     fillOpacity={1}
                                     fill="url(#colorVolume)"
                                 />
@@ -117,15 +123,15 @@ export function ClientAnalytics({ activities, locale }: ClientAnalyticsProps) {
                     </CardContent>
                 </Card>
 
-                <Card className="bg-slate-900 border-slate-800 text-white">
-                    <CardHeader>
-                        <CardTitle className="text-sm font-medium text-slate-400 flex items-center gap-2">
-                            <Activity size={16} className="text-indigo-400" />
+                <Card className="bg-slate-900 border-slate-800 text-white rounded-3xl overflow-hidden shadow-2xl shadow-black/50 border-2 border-indigo-500/10">
+                    <CardHeader className="bg-slate-950/50 border-b border-slate-800">
+                        <CardTitle className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
+                            <Activity size={14} className="text-indigo-400" />
                             {t("frequencyTitle")}
                         </CardTitle>
                     </CardHeader>
-                    <CardContent className="flex items-center justify-center p-8">
-                        <div className="grid grid-cols-7 gap-1.5">
+                    <CardContent className="flex flex-col items-center justify-center p-8 h-full min-h-[350px]">
+                        <div className="grid grid-cols-7 gap-2">
                             {Array.from({ length: 28 }).map((_, i) => {
                                 const d = new Date()
                                 d.setDate(d.getDate() - (27 - i))
@@ -134,14 +140,17 @@ export function ClientAnalytics({ activities, locale }: ClientAnalyticsProps) {
                                     <div
                                         key={i}
                                         className={cn(
-                                            "w-6 h-6 rounded transition-colors",
-                                            isActive ? 'bg-indigo-500 shadow-lg shadow-indigo-500/20' : 'bg-slate-800'
+                                            "w-8 h-8 md:w-10 md:h-10 rounded-xl transition-all duration-300",
+                                            isActive
+                                                ? 'bg-indigo-500 shadow-lg shadow-indigo-500/40 scale-110'
+                                                : 'bg-slate-950 border border-slate-800 hover:border-slate-700'
                                         )}
                                         title={d.toLocaleDateString()}
                                     />
                                 )
                             })}
                         </div>
+                        <p className="mt-8 text-slate-500 text-xs font-medium italic">Showing activity for the last 28 days</p>
                     </CardContent>
                 </Card>
             </div>

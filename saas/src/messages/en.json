@@ -119,7 +119,10 @@
             "synced": "Synced {date}",
             "syncConfiguration": "Sync Configuration",
             "tokenLabel": "Client Sync Token",
-            "syncInstructions": "The client should enter this token in the mobile app to sync their data with your dashboard."
+            "syncInstructions": "The client should enter this token in the mobile app to sync their data with your dashboard.",
+            "noProgramAssigned": "No Program Assigned",
+            "noProgramAssignedDesc": "Assign a program to help this athlete achieve their goals.",
+            "noDescription": "No description available."
         },
         "analytics": {
             "volumeTitle": "Training Volume",
@@ -137,7 +140,10 @@
             "success": "Program assigned successfully",
             "error": "Failed to assign program",
             "selectProgramError": "Please select a program",
-            "paginationComingSoon": "Showing last 5 items. Pagination coming in v1.1"
+            "paginationComingSoon": "Showing last 5 items. Pagination coming in v1.1",
+            "status": "Status",
+            "assignedOn": "Assigned On",
+            "viewFullDetails": "View Full Details"
         }
     },
     "Admin": {

@@ -41,14 +41,17 @@ export function RecentActivity({ activities, locale }: RecentActivityProps) {
             {activities.map((activity) => (
                 <div
                     key={activity.id}
-                    className="p-4 bg-slate-900 border border-slate-800 rounded-xl flex items-center gap-4 hover:border-slate-700 transition-colors"
+                    className="p-5 bg-slate-900 border border-slate-800 rounded-3xl flex items-center gap-6 hover:border-slate-700 transition-all group relative overflow-hidden shadow-xl"
                 >
-                    <div className="p-2 bg-slate-950 border border-slate-800 rounded-lg shrink-0">
+                    <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 to-indigo-500/0 group-hover:from-indigo-500/[0.02] transition-colors pointer-events-none" />
+
+                    <div className="w-14 h-14 bg-slate-950 border border-slate-800 rounded-2xl flex items-center justify-center shrink-0 shadow-inner group-hover:border-slate-700 transition-colors">
                         {getIcon(activity.data_type)}
                     </div>
+
                     <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between gap-4">
-                            <p className="text-sm font-black text-white uppercase tracking-tight truncate">
+                        <div className="flex items-center justify-between gap-4 mb-1">
+                            <p className="text-sm font-bold text-white uppercase tracking-tight truncate">
                                 {activitiesT.has(activity.data_type) ? activitiesT(activity.data_type) : activity.data_type.replace("_", " ")}
                             </p>
                             <p className={cn(
@@ -59,9 +62,17 @@ export function RecentActivity({ activities, locale }: RecentActivityProps) {
                             </p>
                         </div>
                         {/* Simple payload preview */}
-                        <p className="text-xs text-slate-400 mt-1 line-clamp-1">
-                            {JSON.stringify(activity.payload).substring(0, 100)}...
+                        <p className="text-xs text-slate-400 line-clamp-1 italic opacity-80">
+                            {activity.data_type === 'workout'
+                                ? `${(activity.payload as any)?.exercises?.length || 0} Exercises • ${(activity.payload as any)?.duration || 0} Minutes`
+                                : JSON.stringify(activity.payload).substring(0, 100)}
                         </p>
+                    </div>
+
+                    <div className="hidden md:block ps-4 border-s border-slate-800">
+                        <div className="p-2 hover:bg-slate-800 rounded-lg text-slate-500 hover:text-white transition-colors cursor-pointer">
+                            <Activity size={16} />
+                        </div>
                     </div>
                 </div>
             ))}
