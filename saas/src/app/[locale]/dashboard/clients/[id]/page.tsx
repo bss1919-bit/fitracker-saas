@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Calendar, Mail, FileText, Activity, Settings } from "lucide-react"
 import { RecentActivity } from "@/components/clients/activity/recent-activity"
 import { AssignProgramModal } from "@/components/clients/assign-program-modal"
+import { ClientAnalytics } from "@/components/clients/client-analytics"
 
 export default async function ClientProfilePage({
     params
@@ -33,13 +34,25 @@ export default async function ClientProfilePage({
         .select("id, name")
         .eq("is_template", true)
 
-    // Fetch recent activity
+    // Fetch recent activity for summary/history
     const { data: activities } = await supabase
         .from("synced_data")
         .select("*")
         .eq("client_id", id)
         .order("performed_at", { ascending: false })
         .limit(5)
+
+    // Fetch all workout activities for analytics (last 90 days)
+    const ninetyDaysAgo = new Date()
+    ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90)
+
+    const { data: analyticsActivities } = await supabase
+        .from("synced_data")
+        .select("*")
+        .eq("client_id", id)
+        .eq("data_type", "workout")
+        .gte("performed_at", ninetyDaysAgo.toISOString())
+        .order("performed_at", { ascending: true })
 
     const lastSync = activities?.[0]
 
@@ -76,6 +89,9 @@ export default async function ClientProfilePage({
                 <TabsList className="bg-slate-900 border-slate-800">
                     <TabsTrigger value="summary" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all">
                         {t("tabs.summary")}
+                    </TabsTrigger>
+                    <TabsTrigger value="analytics" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all">
+                        {t("tabs.analytics")}
                     </TabsTrigger>
                     <TabsTrigger value="program" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all">
                         {t("tabs.program")}
@@ -148,6 +164,10 @@ export default async function ClientProfilePage({
                             <RecentActivity activities={activities || []} locale={locale} />
                         </div>
                     </div>
+                </TabsContent>
+
+                <TabsContent value="analytics" className="space-y-6">
+                    <ClientAnalytics activities={analyticsActivities || []} locale={locale} />
                 </TabsContent>
 
                 <TabsContent value="program">

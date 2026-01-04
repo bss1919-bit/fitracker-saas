@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server"
 import { createClient } from "@/lib/supabase/server"
 import { QRInvitation } from "@/components/dashboard/qr-invitation"
-import { Users, Dumbbell, Calendar, ArrowUpRight } from "lucide-react"
+import { Users, Dumbbell, Calendar, ArrowUpRight, Activity } from "lucide-react"
 
 export default async function DashboardPage() {
     const t = await getTranslations("Dashboard")
@@ -26,11 +26,40 @@ export default async function DashboardPage() {
         .select("*", { count: "exact", head: true })
         .eq("coach_id", user.id)
 
+    const { count: programsCount } = await supabase
+        .from("coach_programs")
+        .select("*", { count: "exact", head: true })
+        .eq("coach_id", user.id)
+
+    // Count synced data in the last 30 days
+    const thirtyDaysAgo = new Date()
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30)
+
+    const { count: sessionsCount } = await supabase
+        .from("synced_data")
+        .select("*, clients!inner(coach_id)", { count: "exact", head: true })
+        .eq("clients.coach_id", user.id)
+        .gte("performed_at", thirtyDaysAgo.toISOString())
+
     const stats = [
         { label: t("activeClients"), value: clientsCount || 0, icon: Users, color: "text-blue-400" },
-        { label: t("programsBuilt"), value: 0, icon: Dumbbell, color: "text-indigo-400" },
-        { label: t("activeSessions"), value: 0, icon: Calendar, color: "text-emerald-400" },
+        { label: t("programsBuilt"), value: programsCount || 0, icon: Dumbbell, color: "text-indigo-400" },
+        { label: t("activeSessions"), value: sessionsCount || 0, icon: Calendar, color: "text-emerald-400" },
     ]
+
+    // Fetch recent activity for the whole coach
+    const { data: recentActivities } = await supabase
+        .from("synced_data")
+        .select(`
+            *,
+            clients (
+                first_name,
+                last_name
+            )
+        `)
+        .eq("clients.coach_id", user.id)
+        .order("performed_at", { ascending: false })
+        .limit(5)
 
     return (
         <div className="p-8 max-w-7xl mx-auto space-y-12">
@@ -56,18 +85,51 @@ export default async function DashboardPage() {
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div className="lg:col-span-2 space-y-6">
-                    <div className="p-12 bg-slate-900/50 border border-dashed border-slate-800 rounded-3xl flex flex-col items-center justify-center text-center space-y-4">
-                        <div className="p-4 bg-slate-950 rounded-full border border-slate-800 text-slate-400">
-                            <Calendar size={32} />
-                        </div>
-                        <div>
-                            <h3 className="text-lg font-semibold text-white">{t("recentActivity")}</h3>
-                            <p className="text-slate-500 max-w-xs mx-auto">{t("noActivity")}</p>
-                        </div>
+                    <div className="flex items-center justify-between">
+                        <h3 className="text-xl font-bold text-white flex items-center gap-2">
+                            <Activity size={20} className="text-indigo-500" />
+                            {t("recentActivity")}
+                        </h3>
+                    </div>
+
+                    <div className="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden">
+                        {(!recentActivities || recentActivities.length === 0) ? (
+                            <div className="p-12 text-center space-y-4">
+                                <div className="p-4 bg-slate-950 rounded-full border border-slate-800 text-slate-400 inline-block">
+                                    <Calendar size={32} />
+                                </div>
+                                <p className="text-slate-500 max-w-xs mx-auto">{t("noActivity")}</p>
+                            </div>
+                        ) : (
+                            <div className="divide-y divide-slate-800">
+                                {recentActivities.map((activity: any) => (
+                                    <div key={activity.id} className="p-4 flex items-center justify-between hover:bg-slate-800/30 transition-colors group">
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-10 h-10 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-center text-indigo-400">
+                                                <Dumbbell size={20} />
+                                            </div>
+                                            <div>
+                                                <p className="text-sm font-bold text-white">
+                                                    {activity.clients?.first_name} {activity.clients?.last_name}
+                                                </p>
+                                                <p className="text-xs text-slate-500 capitalize">
+                                                    {activity.data_type.replace("_", " ")}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div className="text-right">
+                                            <p className="text-[10px] font-black uppercase tracking-widest text-slate-600">
+                                                {new Date(activity.performed_at).toLocaleDateString()}
+                                            </p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
                 </div>
 
-                <div>
+                <div className="space-y-6">
                     <QRInvitation coachId={user.id} />
                 </div>
             </div>

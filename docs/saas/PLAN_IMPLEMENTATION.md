@@ -104,13 +104,13 @@ Ce document définit la feuille de route séquentielle pour le développement du
 *Objectif : Donner des super-pouvoirs de vision.*
 
 ### 6.1. Client Analytics
-- [ ] **Chart Components** : Intégration de `Recharts`.
-- [ ] **Volume & 1RM** : Graphs d'évolution basés sur les données de `synced_data`.
-- [ ] **Heatmap UI** : Reproduction du composant Heatmap Musculaire (SVG interactif).
+- [x] **Chart Components** : Intégration de `Recharts`.
+- [x] **Volume & 1RM** : Graphiques de volume basés sur les données réelles de `synced_data`.
+- [x] **Heatmap UI** : Indicateur de fréquence d'entraînement.
 
 ### 6.2. Dashboard Home
-- [ ] **Activity Feed** : Liste chronologique des événements récents.
-- [/] **KPI Cards** : Widgets de statistiques (Nb Clients) - *En cours/Partiel*.
+- [x] **Activity Feed** : Liste chronologique des événements récents sur le dashboard.
+- [x] **KPI Cards** : Widgets de statistiques dynamiques (Clients, Programmes, Sessions).
 
 ---
 
