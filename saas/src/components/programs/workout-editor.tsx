@@ -303,20 +303,25 @@ export function WorkoutEditor({ initialData, exercises }: WorkoutEditorProps) {
                             </div>
                         </div>
                     </div>
-                    <div className="flex items-center gap-3 w-full md:w-auto">
-                        <div className="flex items-center bg-slate-950 rounded-2xl p-1 border border-slate-800">
-                            {[2, 3, 4, 5, 6].map(f => (
-                                <button
-                                    key={f}
-                                    onClick={() => setFrequency(f)}
-                                    className={cn(
-                                        "w-10 h-10 rounded-xl text-xs font-black transition-all",
-                                        frequency === f ? "bg-indigo-600 text-white shadow-lg" : "text-slate-500 hover:text-slate-300"
-                                    )}
-                                >
-                                    {f}
-                                </button>
-                            ))}
+                    <div className="flex items-center gap-4 w-full md:w-auto">
+                        <div className="flex flex-col gap-1">
+                            <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest ml-1">{t("frequency")}</span>
+                            <div className="flex items-center bg-slate-950/80 rounded-2xl p-1 border border-slate-800 backdrop-blur-sm shadow-inner">
+                                {[1, 2, 3, 4, 5, 6, 7].map(f => (
+                                    <button
+                                        key={f}
+                                        onClick={() => setFrequency(f)}
+                                        className={cn(
+                                            "w-9 h-9 rounded-xl text-[11px] font-black transition-all duration-200",
+                                            frequency === f
+                                                ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/20 scale-105"
+                                                : "text-slate-500 hover:text-slate-300 hover:bg-slate-900"
+                                        )}
+                                    >
+                                        {f}
+                                    </button>
+                                ))}
+                            </div>
                         </div>
                         <Button
                             onClick={saveProgram}
