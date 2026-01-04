@@ -97,7 +97,7 @@ export default async function AdminDashboard({
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {recentCoaches?.map((coach: any) => (
+                            {recentCoaches?.map((coach) => (
                                 <TableRow key={coach.id} className="border-slate-800 hover:bg-slate-800/50 transition-colors">
                                     <TableCell className="font-medium text-white">
                                         {coach.business_name || coach.full_name || t("newCoach")}

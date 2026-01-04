@@ -110,7 +110,7 @@ export default async function DashboardPage() {
                             </div>
                         ) : (
                             <div className="divide-y divide-slate-800">
-                                {recentActivities.map((activity: any) => (
+                                {recentActivities.map((activity) => (
                                     <div key={activity.id} className="p-4 flex items-center justify-between hover:bg-slate-800/30 transition-colors group">
                                         <div className="flex items-center gap-4">
                                             <div className="w-10 h-10 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-center text-indigo-400">
@@ -127,7 +127,7 @@ export default async function DashboardPage() {
                                         </div>
                                         <div className="text-right">
                                             <p className="text-[10px] font-black uppercase tracking-widest text-slate-600">
-                                                {new Date(activity.performed_at).toLocaleDateString()}
+                                                {activity.performed_at ? new Date(activity.performed_at).toLocaleDateString() : "-"}
                                             </p>
                                         </div>
                                     </div>

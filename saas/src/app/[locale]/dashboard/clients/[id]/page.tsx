@@ -151,7 +151,7 @@ export default async function ClientProfilePage({
                             <CardContent className="pt-6 space-y-4">
                                 <div className="p-4 bg-slate-950 rounded-xl border border-slate-800 space-y-1">
                                     <p className="text-[10px] font-black uppercase tracking-widest text-slate-500">{t("profile.tokenLabel")}</p>
-                                    <p className="font-mono text-indigo-400 break-all select-all">{(client as any).sync_token || "N/A"}</p>
+                                    <p className="font-mono text-indigo-400 break-all select-all">{client.sync_token || "N/A"}</p>
                                 </div>
                                 <p className="text-xs text-slate-500 leading-relaxed italic">
                                     {t("profile.syncInstructions")}
