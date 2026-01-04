@@ -64,9 +64,9 @@ export function AssignProgramModal({ clientId, programs }: AssignProgramModalPro
             </DialogTrigger>
             <DialogContent className="bg-slate-900 border-slate-800 text-white max-w-md">
                 <DialogHeader>
-                    <h2 className="text-2xl font-bold tracking-tight text-white">
+                    <DialogTitle className="text-2xl font-bold tracking-tight text-white">
                         {t("title")}
-                    </h2>
+                    </DialogTitle>
                 </DialogHeader>
 
                 <div className="space-y-6 py-6">
