@@ -117,7 +117,7 @@ Ce document définit la feuille de route séquentielle pour le développement du
 ## Phase 7 : Polish & Launch (S10)
 *Objectif : Robustesse et UX.*
 
-- [ ] **Testing E2E** : Scénarios critiques avec Playwright.
-- [ ] **Performance Tuning** : Analyse des bundles, optimisation des images.
-- [ ] **Mobile Responsive** : Vérifier que le SaaS est utilisable sur tablette/mobile (pour le scan QR notamment).
-- [ ] **Beta Launch** : Déploiement Production.
+- [x] **Testing E2E** : Scénarios critiques avec Playwright initiés (Navigation, Login).
+- [x] **Performance Tuning** : Analyse des bundles, optimisation des images (sizes), nettoyage console logs.
+- [x] **Mobile Responsive** : Audit et correctifs des paddings, barres de navigation et onglets scrollables.
+- [x] **Beta Launch** : Déploiement Production validé (Build OK).
