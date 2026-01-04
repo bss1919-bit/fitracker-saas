@@ -135,7 +135,8 @@
                 "submit": "Assign",
                 "success": "Program assigned successfully",
                 "error": "Failed to assign program",
-                "selectProgramError": "Please select a program"
+                "selectProgramError": "Please select a program",
+                "paginationComingSoon": "Showing last 5 items. Pagination coming in v1.1"
             }
         }
     },
@@ -293,5 +294,11 @@
         "units": "Units System",
         "metric": "Metric (kg, cm)",
         "imperial": "Imperial (lb, in)"
+    },
+    "Activities": {
+        "workout": "Workout",
+        "health_metrics": "Health Metrics",
+        "sleep": "Sleep",
+        "noActivity": "No activity logged yet."
     }
 }

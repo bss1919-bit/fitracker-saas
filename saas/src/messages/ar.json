@@ -148,7 +148,8 @@
                 "submit": "تعيين",
                 "success": "تم تعيين البرنامج بنجاح",
                 "error": "فشل تعيين البرنامج",
-                "selectProgramError": "يرجى اختيار برنامج"
+                "selectProgramError": "يرجى اختيار برنامج",
+                "paginationComingSoon": "عرض آخر 5 عناصر. التصفح (Pagination) قادم في الإصدار 1.1"
             }
         }
     },
@@ -293,5 +294,11 @@
         "units": "نظام الوحدات",
         "metric": "متري (كجم، سم)",
         "imperial": "إمبراطوري (رطل، بوصة)"
+    },
+    "Activities": {
+        "workout": "تمرين",
+        "health_metrics": "مقاييس صحية",
+        "sleep": "النوم",
+        "noActivity": "لم يتم تسجيل أي نشاط بعد."
     }
 }

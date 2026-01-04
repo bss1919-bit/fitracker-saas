@@ -54,28 +54,29 @@ export default async function ClientProfilePage({
         .gte("performed_at", ninetyDaysAgo.toISOString())
         .order("performed_at", { ascending: true })
 
+    const activitiesT = await getTranslations("Activities")
     const lastSync = activities?.[0]
 
     return (
-        <div className="p-8 max-w-7xl mx-auto space-y-8">
+        <div className="p-8 max-w-7xl mx-auto space-y-12">
             {/* Header */}
-            <div className="flex justify-between items-start">
-                <div className="space-y-1">
-                    <div className="flex items-center gap-3">
-                        <h1 className="text-3xl font-bold text-white">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div className="space-y-4">
+                    <div className="flex flex-wrap items-center gap-4">
+                        <h1 className="text-3xl font-bold tracking-tight text-white">
                             {client.first_name} {client.last_name}
                         </h1>
-                        <Badge variant="outline" className="border-emerald-500/50 text-emerald-400 bg-emerald-500/5">
+                        <Badge variant="outline" className="border-emerald-500/50 text-emerald-400 bg-emerald-500/5 px-2 py-1">
                             {t(`status.${client.status}`)}
                         </Badge>
                     </div>
-                    <div className="flex items-center gap-4 text-slate-400">
-                        <div className="flex items-center gap-1.5 italic">
-                            <Mail size={14} />
+                    <div className="flex flex-wrap items-center gap-6 text-slate-400">
+                        <div className="flex items-center gap-2">
+                            <Mail size={16} />
                             <span>{client.email || t("profile.noEmail")}</span>
                         </div>
-                        <div className="flex items-center gap-1.5">
-                            <Calendar size={14} />
+                        <div className="flex items-center gap-2">
+                            <Calendar size={16} />
                             <span>{t("profile.joined", { date: new Date(client.created_at!).toLocaleDateString(locale) })}</span>
                         </div>
                     </div>
@@ -85,57 +86,59 @@ export default async function ClientProfilePage({
             </div>
 
             {/* Tabs */}
-            <Tabs defaultValue="summary" className="space-y-6">
-                <TabsList className="bg-slate-900 border-slate-800">
-                    <TabsTrigger value="summary" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all">
+            <Tabs defaultValue="summary" className="space-y-10">
+                <TabsList className="bg-slate-900 border-slate-800 p-1 h-auto rounded-2xl">
+                    <TabsTrigger value="summary" className="px-8 py-3 rounded-xl data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all font-black uppercase text-[10px] tracking-widest">
                         {t("tabs.summary")}
                     </TabsTrigger>
-                    <TabsTrigger value="analytics" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all">
+                    <TabsTrigger value="analytics" className="px-8 py-3 rounded-xl data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all font-black uppercase text-[10px] tracking-widest">
                         {t("tabs.analytics")}
                     </TabsTrigger>
-                    <TabsTrigger value="program" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all">
+                    <TabsTrigger value="program" className="px-8 py-3 rounded-xl data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all font-black uppercase text-[10px] tracking-widest">
                         {t("tabs.program")}
                     </TabsTrigger>
-                    <TabsTrigger value="history" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all">
+                    <TabsTrigger value="history" className="px-8 py-3 rounded-xl data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all font-black uppercase text-[10px] tracking-widest">
                         {t("tabs.history")}
                     </TabsTrigger>
                 </TabsList>
 
-                <TabsContent value="summary" className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <Card className="bg-slate-900 border-slate-800 text-white">
-                            <CardHeader>
-                                <CardTitle className="text-sm font-medium text-slate-400 flex items-center gap-2">
-                                    <Activity size={16} className="text-indigo-400" />
+                <TabsContent value="summary" className="space-y-8">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <Card className="bg-slate-900 border-slate-800 text-white rounded-3xl overflow-hidden shadow-2xl shadow-black/50 border-2 border-indigo-500/10">
+                            <CardHeader className="bg-slate-950/50 border-b border-slate-800">
+                                <CardTitle className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2">
+                                    <Activity size={14} className="text-indigo-500" />
                                     {t("profile.lastActivity")}
                                 </CardTitle>
                             </CardHeader>
-                            <CardContent>
+                            <CardContent className="p-8">
                                 {lastSync ? (
                                     <>
-                                        <p className="text-2xl font-bold capitalize">{lastSync.data_type.replace("_", " ")}</p>
-                                        <p className="text-xs text-slate-500 mt-1 italic">
+                                        <p className="text-3xl font-black text-white uppercase tracking-tighter italic truncate">
+                                            {activitiesT.has(lastSync.data_type) ? activitiesT(lastSync.data_type) : lastSync.data_type.replace("_", " ")}
+                                        </p>
+                                        <p className="text-xs text-slate-500 mt-2 font-medium">
                                             {t("profile.synced", { date: new Date(lastSync.updated_at!).toLocaleDateString(locale) })}
                                         </p>
                                     </>
                                 ) : (
                                     <>
-                                        <p className="text-2xl font-bold">{t("profile.noActivity")}</p>
-                                        <p className="text-xs text-slate-500 mt-1 italic">{t("profile.waitingSync")}</p>
+                                        <p className="text-3xl font-black text-white uppercase tracking-tighter italic">{t("profile.noActivity")}</p>
+                                        <p className="text-xs text-slate-500 mt-2 font-medium">{t("profile.waitingSync")}</p>
                                     </>
                                 )}
                             </CardContent>
                         </Card>
 
-                        <Card className="md:col-span-2 bg-slate-900 border-slate-800 text-white">
-                            <CardHeader>
-                                <CardTitle className="text-sm font-medium text-slate-400 flex items-center gap-2">
-                                    <FileText size={16} className="text-indigo-400" />
+                        <Card className="md:col-span-2 bg-slate-900 border-slate-800 text-white rounded-3xl overflow-hidden shadow-2xl shadow-black/50 border-2 border-indigo-500/10">
+                            <CardHeader className="bg-slate-950/50 border-b border-slate-800">
+                                <CardTitle className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2">
+                                    <FileText size={14} className="text-indigo-500" />
                                     {t("profile.notes")}
                                 </CardTitle>
                             </CardHeader>
-                            <CardContent>
-                                <p className="text-slate-300">
+                            <CardContent className="p-8">
+                                <p className="text-lg font-medium text-slate-300 leading-relaxed italic">
                                     {client.notes || t("profile.noNotes")}
                                 </p>
                             </CardContent>
@@ -181,7 +184,7 @@ export default async function ClientProfilePage({
                         <h3 className="text-lg font-bold text-white">{t("profile.historyDetailed")}</h3>
                         <RecentActivity activities={activities || []} locale={locale} />
                         {activities && activities.length > 5 && (
-                            <p className="text-center text-slate-500 text-sm italic">Showing last 5 items. Pagination coming in v1.1</p>
+                            <p className="text-center text-slate-500 text-sm italic">{t("profile.paginationComingSoon")}</p>
                         )}
                     </div>
                 </TabsContent>

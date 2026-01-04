@@ -122,8 +122,10 @@ export function SettingsForm({ initialData }: SettingsFormProps) {
         router.replace("/dashboard/settings", { locale: newLocale })
     }
 
+    const isRtl = locale === 'ar'
+
     return (
-        <Tabs defaultValue="profile" className="w-full">
+        <Tabs defaultValue="profile" className="w-full" dir={isRtl ? 'rtl' : 'ltr'}>
             <TabsList className="bg-slate-900 border-slate-800 mb-8 p-1">
                 <TabsTrigger value="profile" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white flex gap-2">
                     <User size={16} /> {t("profile")}
@@ -208,7 +210,7 @@ export function SettingsForm({ initialData }: SettingsFormProps) {
                                                 type="file"
                                                 accept="image/*"
                                                 onChange={(e) => setLogoFile(e.target.files?.[0] || null)}
-                                                className="bg-slate-950 border-slate-800 cursor-pointer text-slate-400 file:text-indigo-400 file:bg-slate-900 file:border-0 file:mr-4 file:px-4 file:py-2 file:rounded-md hover:file:bg-slate-800 mt-2"
+                                                className="bg-slate-950 border-slate-800 cursor-pointer text-slate-400 file:text-indigo-400 file:bg-slate-900 file:border-0 file:me-4 file:px-4 file:py-2 file:rounded-md hover:file:bg-slate-800 mt-2"
                                             />
                                         </FormControl>
                                     </FormItem>
@@ -268,7 +270,7 @@ export function SettingsForm({ initialData }: SettingsFormProps) {
                     <div className="flex justify-end">
                         <Button type="submit" disabled={isSaving} className="bg-indigo-600 hover:bg-indigo-700 text-white font-black px-12 h-14 rounded-2xl shadow-lg shadow-indigo-500/20 transition-all hover:scale-[1.02]">
                             {isSaving ? (
-                                <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> {tAuth("loading")}</>
+                                <><Loader2 className="me-2 h-5 w-5 animate-spin" /> {tAuth("loading")}</>
                             ) : (
                                 t("save")
                             )}

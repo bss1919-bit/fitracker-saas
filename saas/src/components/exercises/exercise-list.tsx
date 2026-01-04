@@ -49,7 +49,7 @@ export function ExerciseList({ exercises }: ExerciseListProps) {
                         <TableHead className="text-slate-400 font-semibold text-center mt-2 flex items-center justify-center gap-2">
                             {t("table.media")}
                         </TableHead>
-                        <TableHead className="text-slate-400 font-semibold text-right">{t("table.actions")}</TableHead>
+                        <TableHead className="text-slate-400 font-semibold text-end">{t("table.actions")}</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -79,7 +79,7 @@ export function ExerciseList({ exercises }: ExerciseListProps) {
                                         )}
                                     </div>
                                 </TableCell>
-                                <TableCell className="text-right">
+                                <TableCell className="text-end">
                                     <div className="flex items-center justify-end gap-1">
                                         <Button variant="ghost" size="icon" className="h-8 w-8 text-slate-500 hover:text-white hover:bg-slate-800">
                                             <Pencil size={14} />

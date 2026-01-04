@@ -28,20 +28,20 @@ export default async function ProgramsPage() {
         .order("created_at", { ascending: false })
 
     return (
-        <div className="p-8 max-w-7xl mx-auto space-y-8">
-            <div className="flex justify-between items-end">
-                <div className="space-y-1">
-                    <h1 className="text-4xl font-black text-white tracking-tight">{navT("programs")}</h1>
-                    <p className="text-slate-400">
-                        {t("description")}
-                    </p>
+        <div className="p-8 max-w-7xl mx-auto space-y-12">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div>
+                    <h1 className="text-3xl font-bold tracking-tight text-white mb-2">{navT("programs")}</h1>
+                    <p className="text-slate-400 max-w-2xl">{t("description")}</p>
                 </div>
-                <Link href="/dashboard/programs/new">
-                    <Button className="bg-indigo-600 hover:bg-indigo-700 space-x-2">
-                        <Plus size={18} />
-                        <span>{t("buildProgram")}</span>
-                    </Button>
-                </Link>
+                <div className="flex gap-4">
+                    <Link href="/dashboard/programs/new">
+                        <Button className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold h-10 px-4 rounded-xl shadow-lg shadow-indigo-500/20 transition-all hover:scale-[1.02]">
+                            <Plus className="me-2" size={20} />
+                            {t("addNew")}
+                        </Button>
+                    </Link>
+                </div>
             </div>
 
             {(!programs || programs.length === 0) ? (
@@ -79,7 +79,7 @@ export default async function ProgramsPage() {
                                 />
                                 <Link href={`/dashboard/programs/${program.id}`}>
                                     <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white hover:bg-slate-800">
-                                        {t("edit")} <ArrowRight className="ml-2" size={14} />
+                                        {t("edit")} <ArrowRight className="ms-2" size={14} />
                                     </Button>
                                 </Link>
                             </div>

@@ -34,10 +34,16 @@ export default async function SettingsPage({
     }
 
     return (
-        <div className="p-8 max-w-5xl mx-auto space-y-12">
-            <header className="space-y-2">
-                <h1 className="text-4xl font-black text-white tracking-tight">{t("title")}</h1>
-                <p className="text-slate-500 text-lg">{t("description")}</p>
+        <div className="p-8 max-w-7xl mx-auto space-y-12">
+            <header className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div>
+                    <h1 className="text-3xl font-bold tracking-tight text-white mb-2">
+                        {t("title")}
+                    </h1>
+                    <p className="text-slate-400">
+                        {t("description")}
+                    </p>
+                </div>
             </header>
 
             <SettingsForm initialData={coach} />

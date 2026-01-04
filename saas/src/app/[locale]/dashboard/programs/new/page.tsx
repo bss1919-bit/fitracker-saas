@@ -15,12 +15,20 @@ export default async function NewProgramPage() {
         .eq("coach_id", user.id)
         .order("name->>default", { ascending: true })
 
+    const t = await getTranslations("Programs")
+
     return (
-        <div className="p-8 max-w-5xl mx-auto space-y-8">
-            <div className="mb-8">
-                <h1 className="text-3xl font-black text-white">Program Builder</h1>
-                <p className="text-slate-500">Design your training template by adding days and exercises.</p>
-            </div>
+        <div className="p-8 max-w-7xl mx-auto space-y-12">
+            <header className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div>
+                    <h1 className="text-3xl font-bold tracking-tight text-white mb-2">
+                        {t("title")}
+                    </h1>
+                    <p className="text-slate-400">
+                        {t("description")}
+                    </p>
+                </div>
+            </header>
 
             <WorkoutEditor exercises={exercises || []} />
         </div>

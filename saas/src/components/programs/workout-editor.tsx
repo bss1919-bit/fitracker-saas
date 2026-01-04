@@ -312,7 +312,7 @@ export function WorkoutEditor({ initialData, exercises }: WorkoutEditorProps) {
                     </div>
                     <div className="flex items-center gap-4 w-full md:w-auto">
                         <div className="flex flex-col gap-1 min-w-[200px]">
-                            <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest ml-1">{t("frequency")}</span>
+                            <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest ms-1">{t("frequency")}</span>
                             <Select value={frequency.toString()} onValueChange={(val) => setFrequency(parseInt(val))}>
                                 <SelectTrigger className="bg-slate-950 border-slate-800 h-10 rounded-xl text-xs font-bold text-white shadow-inner focus:ring-indigo-500/50">
                                     <SelectValue />
@@ -362,7 +362,7 @@ export function WorkoutEditor({ initialData, exercises }: WorkoutEditorProps) {
                                         {cycles.length > 1 && (
                                             <button
                                                 onClick={() => deleteCycle(cycle.id)}
-                                                className="absolute -top-2 -right-2 w-6 h-6 bg-red-600 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity border-2 border-slate-950 shadow-lg"
+                                                className="absolute -top-2 -end-2 w-6 h-6 bg-red-600 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity border-2 border-slate-950 shadow-lg"
                                             >
                                                 <Plus size={12} className="rotate-45" />
                                             </button>
@@ -374,7 +374,7 @@ export function WorkoutEditor({ initialData, exercises }: WorkoutEditorProps) {
                                     onClick={addCycle}
                                     className="px-6 py-3 h-auto rounded-2xl border-2 border-dashed border-slate-800 bg-transparent text-slate-500 hover:text-white hover:border-slate-600 text-xs font-black uppercase tracking-widest"
                                 >
-                                    <Plus size={16} className="mr-2" /> {t("addCycle")}
+                                    <Plus size={16} className="me-2" /> {t("addCycle")}
                                 </Button>
                             </div>
                         </div>
@@ -386,7 +386,7 @@ export function WorkoutEditor({ initialData, exercises }: WorkoutEditorProps) {
                                     <button
                                         onClick={() => setActiveDayId(day.id)}
                                         className={cn(
-                                            "flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black transition-all border-2 pr-8 uppercase tracking-widest",
+                                            "flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black transition-all border-2 pe-8 uppercase tracking-widest",
                                             activeDayId === day.id
                                                 ? "bg-slate-100 border-white text-slate-950 shadow-lg shadow-white/10"
                                                 : "bg-slate-900/50 border-slate-800 text-slate-500 hover:border-slate-700 hover:text-slate-300"
@@ -395,7 +395,7 @@ export function WorkoutEditor({ initialData, exercises }: WorkoutEditorProps) {
                                         <Calendar size={14} />
                                         <span>{day.name}</span>
                                     </button>
-                                    <div className="absolute right-1 top-1/2 -translate-y-1/2 flex items-center opacity-0 group-hover/day:opacity-100 transition-opacity translate-x-1 group-hover/day:translate-x-0">
+                                    <div className="absolute end-1 top-1/2 -translate-y-1/2 flex items-center opacity-0 group-hover/day:opacity-100 transition-opacity translate-x-1 group-hover/day:translate-x-0">
                                         <button
                                             onClick={(e) => { e.stopPropagation(); copyDay(activeCycleId!, day) }}
                                             className="p-1 text-slate-500 hover:text-indigo-400"
@@ -466,12 +466,12 @@ export function WorkoutEditor({ initialData, exercises }: WorkoutEditorProps) {
                                                                         isSuperset ? "bg-indigo-950/20 border-indigo-500/30" : "bg-slate-900/40 border-slate-800"
                                                                     )}
                                                                 >
-                                                                    <div {...provided.dragHandleProps} className="absolute left-2 top-1/2 -translate-y-1/2 p-1 text-slate-700 hover:text-slate-400 cursor-grab active:cursor-grabbing transition-opacity opacity-0 group-hover/ex:opacity-100">
+                                                                    <div {...provided.dragHandleProps} className="absolute start-2 top-1/2 -translate-y-1/2 p-1 text-slate-700 hover:text-slate-400 cursor-grab active:cursor-grabbing transition-opacity opacity-0 group-hover/ex:opacity-100">
                                                                         <GripVertical size={16} />
                                                                     </div>
 
                                                                     {isFirstInSuperset && (
-                                                                        <div className="absolute -top-3 left-6 px-3 py-1 bg-indigo-600 rounded-full flex items-center gap-2 shadow-lg z-10">
+                                                                        <div className="absolute -top-3 start-6 px-3 py-1 bg-indigo-600 rounded-full flex items-center gap-2 shadow-lg z-10">
                                                                             <Zap size={12} className="text-white fill-white" />
                                                                             <span className="text-[10px] font-black text-white uppercase tracking-widest leading-none">{t("superset")}</span>
                                                                         </div>
@@ -568,9 +568,9 @@ export function WorkoutEditor({ initialData, exercises }: WorkoutEditorProps) {
                                                     }}
                                                 >
                                                     {activeSupersetId ? (
-                                                        <><Plus size={18} className="mr-2 rotate-45" /> {t("finishSuperset")}</>
+                                                        <><Plus size={18} className="me-2 rotate-45" /> {t("finishSuperset")}</>
                                                     ) : (
-                                                        <><Zap size={18} className="mr-2" /> {t("newSuperset")}</>
+                                                        <><Zap size={18} className="me-2" /> {t("newSuperset")}</>
                                                     )}
                                                 </Button>
                                             </div>
@@ -617,7 +617,7 @@ function PopoverMenu({ label, items, onSelect, className, placeholder, emptyMess
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
                 <Button variant="ghost" className={className || "text-[10px] uppercase font-bold text-slate-400 hover:text-white"}>
-                    <Plus size={14} className="mr-1" /> {label}
+                    <Plus size={14} className="me-1" /> {label}
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="w-[300px] p-0 bg-slate-900 border-slate-800" align="start">

@@ -42,43 +42,43 @@ export default async function JoinPage({
                     </div>
                 )}
 
-                <header className="space-y-2">
-                    <h1 className="text-3xl font-bold tracking-tight">{t("title")}</h1>
-                    <p className="text-slate-400">
+                <header className="space-y-4">
+                    <h1 className="text-3xl font-bold tracking-tight text-white">{t("title")}</h1>
+                    <p className="text-slate-400 text-lg">
                         {t("description", { name: coachName })}
                     </p>
                 </header>
 
-                <Card className="bg-slate-900 border-slate-800 text-left border-2 border-indigo-500/20 shadow-2xl shadow-indigo-500/10">
-                    <CardHeader>
-                        <CardTitle className="text-xl flex items-center gap-2">
+                <Card className="bg-slate-900 border-slate-800 text-start border-2 border-indigo-500/10 rounded-2xl overflow-hidden">
+                    <CardHeader className="bg-slate-950/30 border-b border-slate-800 p-6">
+                        <CardTitle className="text-lg font-bold flex items-center gap-2 text-white">
                             <Smartphone className="text-indigo-400" size={20} />
                             {t("howTo")}
                         </CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-6">
+                    <CardContent className="p-6 space-y-6">
                         <div className="flex gap-4">
-                            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center font-bold text-sm">1</div>
-                            <div className="space-y-1">
-                                <p className="font-medium">{t("step1")}</p>
+                            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-slate-950 border border-slate-800 flex items-center justify-center font-bold text-sm text-indigo-400">1</div>
+                            <div className="space-y-1 text-start">
+                                <p className="font-medium text-white">{t("step1")}</p>
                                 <p className="text-sm text-slate-500">{t("step1Desc")}</p>
                             </div>
                         </div>
 
                         <div className="flex gap-4">
-                            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center font-bold text-sm">2</div>
-                            <div className="space-y-1">
-                                <p className="font-medium">{t("step2")}</p>
+                            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-slate-950 border border-slate-800 flex items-center justify-center font-bold text-sm text-indigo-400">2</div>
+                            <div className="space-y-1 text-start">
+                                <p className="font-medium text-white">{t("step2")}</p>
                                 <p className="text-sm text-slate-500">{t("step2Desc")}</p>
                             </div>
                         </div>
 
-                        <div className="pt-4 space-y-3">
-                            <Button className="w-full bg-indigo-600 hover:bg-indigo-700 h-12 text-lg font-semibold group">
-                                <Download className="mr-2 group-hover:translate-y-0.5 transition-transform" size={20} />
+                        <div className="pt-4 space-y-4 border-t border-slate-800">
+                            <Button className="w-full bg-indigo-600 hover:bg-indigo-700 h-12 text-base font-bold rounded-xl group shadow-lg shadow-indigo-500/10 transition-all hover:scale-[1.02]">
+                                <Download className="me-2 group-hover:translate-y-0.5 transition-transform" size={18} />
                                 {t("download")}
                             </Button>
-                            <p className="text-[10px] text-center text-slate-600 uppercase tracking-widest font-bold">{t("deepLink")}</p>
+                            <p className="text-xs text-center text-slate-500 tracking-wide uppercase font-semibold">{t("deepLink")}</p>
                         </div>
                     </CardContent>
                 </Card>

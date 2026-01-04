@@ -13,6 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function DashboardPage() {
     const t = await getTranslations("Dashboard")
+    const activitiesT = await getTranslations("Activities")
     const supabase = await createClient()
 
     // Get current session
@@ -71,9 +72,15 @@ export default async function DashboardPage() {
 
     return (
         <div className="p-8 max-w-7xl mx-auto space-y-12">
-            <header>
-                <h1 className="text-3xl font-bold text-white">{t("title")}</h1>
-                <p className="text-slate-400 mt-2">{t("welcome", { name: displayName })}</p>
+            <header className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div className="space-y-2">
+                    <h1 className="text-3xl font-bold tracking-tight text-white">
+                        {t("title")}
+                    </h1>
+                    <p className="text-slate-400 text-lg">
+                        {t("welcome", { name: (coach?.full_name || user.user_metadata?.full_name || 'Coach').split(' ')[0] })}
+                    </p>
+                </div>
             </header>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -86,7 +93,7 @@ export default async function DashboardPage() {
                             <p className="text-sm text-slate-500 font-medium">{stat.label}</p>
                             <p className="text-2xl font-bold text-white">{stat.value}</p>
                         </div>
-                        <ArrowUpRight className="ml-auto text-slate-700 group-hover:text-slate-400 transition-colors" size={20} />
+                        <ArrowUpRight className="ms-auto text-slate-700 group-hover:text-slate-400 transition-colors" size={20} />
                     </div>
                 ))}
             </div>
@@ -117,15 +124,15 @@ export default async function DashboardPage() {
                                                 <Dumbbell size={20} />
                                             </div>
                                             <div>
-                                                <p className="text-sm font-bold text-white">
+                                                <p className="text-sm font-black text-white uppercase tracking-tight truncate">
                                                     {activity.clients?.first_name} {activity.clients?.last_name}
                                                 </p>
-                                                <p className="text-xs text-slate-500 capitalize">
-                                                    {activity.data_type.replace("_", " ")}
+                                                <p className="text-[10px] text-slate-500 uppercase font-black tracking-widest">
+                                                    {activitiesT.has(activity.data_type) ? activitiesT(activity.data_type) : activity.data_type.replace("_", " ")}
                                                 </p>
                                             </div>
                                         </div>
-                                        <div className="text-right">
+                                        <div className="text-end">
                                             <p className="text-[10px] font-black uppercase tracking-widest text-slate-600">
                                                 {activity.performed_at ? new Date(activity.performed_at).toLocaleDateString() : "-"}
                                             </p>

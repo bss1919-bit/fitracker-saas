@@ -135,7 +135,8 @@
                 "submit": "Assigner",
                 "success": "Programme assigné avec succès",
                 "error": "Échec de l'assignation du programme",
-                "selectProgramError": "Veuillez sélectionner un programme"
+                "selectProgramError": "Veuillez sélectionner un programme",
+                "paginationComingSoon": "Affichage des 5 derniers éléments. La pagination arrive en v1.1"
             }
         }
     },
@@ -293,5 +294,11 @@
         "units": "Système d'unités",
         "metric": "Métrique (kg, cm)",
         "imperial": "Impérial (lb, in)"
+    },
+    "Activities": {
+        "workout": "Entraînement",
+        "health_metrics": "Santé",
+        "sleep": "Sommeil",
+        "noActivity": "Aucune activité enregistrée pour le moment."
     }
 }

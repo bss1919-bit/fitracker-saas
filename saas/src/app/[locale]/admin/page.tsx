@@ -54,9 +54,15 @@ export default async function AdminDashboard({
 
     return (
         <div className="p-8 max-w-7xl mx-auto space-y-12">
-            <header>
-                <h1 className="text-3xl font-bold text-white">{t("title")}</h1>
-                <p className="text-slate-400 mt-2">{t("description")}</p>
+            <header className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div>
+                    <h1 className="text-3xl font-bold tracking-tight text-white mb-2">
+                        {t("title")}
+                    </h1>
+                    <p className="text-slate-400">
+                        {t("description")}
+                    </p>
+                </div>
             </header>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -77,10 +83,10 @@ export default async function AdminDashboard({
                 <div className="flex justify-between items-end">
                     <h2 className="text-xl font-bold text-white">{t("coachesList")}</h2>
                     <div className="relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={16} />
+                        <Search className="absolute start-3 top-1/2 -translate-y-1/2 text-slate-500" size={16} />
                         <input
                             placeholder={t("searchPlaceholder")}
-                            className="pl-10 pr-4 py-2 bg-slate-900 border border-slate-800 rounded-lg text-sm text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 w-64"
+                            className="ps-10 pe-4 py-2 bg-slate-900 border border-slate-800 rounded-lg text-sm text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 w-64"
                         />
                     </div>
                 </div>
@@ -93,7 +99,7 @@ export default async function AdminDashboard({
                                 <TableHead className="text-slate-400">{t("table.email")}</TableHead>
                                 <TableHead className="text-slate-400">{t("table.status")}</TableHead>
                                 <TableHead className="text-slate-400">{t("table.joined")}</TableHead>
-                                <TableHead className="text-right text-slate-400">{t("table.actions")}</TableHead>
+                                <TableHead className="text-end text-slate-400">{t("table.actions")}</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -124,7 +130,7 @@ export default async function AdminDashboard({
                                     <TableCell className="text-slate-500 text-sm">
                                         {new Date(coach.created_at!).toLocaleDateString(locale)}
                                     </TableCell>
-                                    <TableCell className="text-right">
+                                    <TableCell className="text-end">
                                         <div className="flex justify-end gap-2">
                                             <form action={async () => {
                                                 "use server"

@@ -38,10 +38,10 @@ export function ClientList({ clients }: ClientListProps) {
             <Table>
                 <TableHeader className="bg-slate-950">
                     <TableRow className="border-slate-800">
-                        <TableHead className="text-slate-400 font-medium">{t("table.name")}</TableHead>
-                        <TableHead className="text-slate-400 font-medium hidden md:table-cell">{t("table.email")}</TableHead>
-                        <TableHead className="text-slate-400 font-medium">{t("table.status")}</TableHead>
-                        <TableHead className="text-right text-slate-400 font-medium">{t("table.actions")}</TableHead>
+                        <TableHead className="text-start text-slate-400 font-medium">{t("table.name")}</TableHead>
+                        <TableHead className="text-start text-slate-400 font-medium hidden md:table-cell">{t("table.email")}</TableHead>
+                        <TableHead className="text-start text-slate-400 font-medium">{t("table.status")}</TableHead>
+                        <TableHead className="text-end text-slate-400 font-medium">{t("table.actions")}</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -62,10 +62,10 @@ export function ClientList({ clients }: ClientListProps) {
                                     {t(`status.${client.status || 'active'}`)}
                                 </Badge>
                             </TableCell>
-                            <TableCell className="text-right">
+                            <TableCell className="text-end">
                                 <Button variant="ghost" size="sm" asChild className="hover:text-indigo-400 transition-colors">
                                     <Link href={`/dashboard/clients/${client.id}`}>
-                                        <Eye size={18} className="mr-2" />
+                                        <Eye size={18} className="me-2" />
                                         {t("table.viewProfile")}
                                     </Link>
                                 </Button>
