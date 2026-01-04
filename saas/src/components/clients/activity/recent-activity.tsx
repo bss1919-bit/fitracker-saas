@@ -5,6 +5,7 @@ import { Database } from "@/types/supabase"
 import { formatDistanceToNow } from "date-fns"
 import { fr, enUS, ar } from "date-fns/locale"
 import { Dumbbell, Activity, Heart, Moon } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 type SyncedData = Database["public"]["Tables"]["synced_data"]["Row"]
 
@@ -50,7 +51,10 @@ export function RecentActivity({ activities, locale }: RecentActivityProps) {
                             <p className="text-sm font-black text-white uppercase tracking-tight truncate">
                                 {activitiesT.has(activity.data_type) ? activitiesT(activity.data_type) : activity.data_type.replace("_", " ")}
                             </p>
-                            <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest shrink-0">
+                            <p className={cn(
+                                "text-[10px] text-slate-500 font-bold shrink-0",
+                                locale !== 'ar' && "uppercase tracking-widest"
+                            )}>
                                 {formatDistanceToNow(new Date(activity.performed_at!), { addSuffix: true, locale: dateLocale })}
                             </p>
                         </div>

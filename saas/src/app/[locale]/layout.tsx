@@ -24,6 +24,8 @@ export const metadata: Metadata = {
   description: "The elite platform for professional FitTracker coaches.",
 };
 
+import { Toaster } from "@/components/ui/sonner";
+
 export default async function RootLayout({
   children,
   params
@@ -50,6 +52,7 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider messages={messages}>
           {children}
+          <Toaster position="top-center" expand={true} richColors dir={isRtl ? 'rtl' : 'ltr'} />
         </NextIntlClientProvider>
       </body>
     </html>
