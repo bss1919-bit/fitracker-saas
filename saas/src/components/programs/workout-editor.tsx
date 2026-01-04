@@ -299,7 +299,7 @@ export function WorkoutEditor({ initialData, exercises }: WorkoutEditorProps) {
                             />
                             <div className="flex items-center gap-4 mt-1 text-[10px] uppercase font-black tracking-widest text-slate-500">
                                 <span className="flex items-center gap-1"><Layers size={10} /> {cycles.length} {t("cycles")}</span>
-                                <span className="flex items-center gap-1"><Calendar size={10} /> {duration} {t("weeksShort")}</span>
+                                <span className="flex items-center gap-1"><Calendar size={10} /> {duration} {t("weeks")}</span>
                             </div>
                         </div>
                     </div>

@@ -90,13 +90,13 @@ Ce document définit la feuille de route séquentielle pour le développement du
 - [x] **Custom Exercises** : Formulaire de création d'exercice privé + Upload Vidéo.
 
 ### 5.2. Workout Editor (Le gros morceau)
-- [x] **DnD Interface** : Implémentation de `@hello-pangea/dnd` ou `dnd-kit` pour construire la structure.
-- [x] **Composant Set/Rep** : Interface dense pour saisir les targets (Kg, Reps, RPE).
-- [x] **Superset Logic** : Logique UI pour grouper visuellement A1/A2.
+- [x] **DnD Interface** : Implémentation de `@hello-pangea/dnd` pour construire la structure.
+- [x] **Composant Set/Rep** : Interface dense pour saisir les targets (Reps, Sets, Rest).
+- [x] **Superset Logic** : Logique UI pour grouper visuellement les exercices.
 
 ### 5.3. Assignation
 - [x] **Assign Modal** : Sélectionner un client et une date de début.
-- [/] **Sync Down** : Mécanisme pour rendre ce programme disponible à l'API de sync (que l'app mobile viendra -pull-).
+- [x] **Sync Down** : Assignation stockée en base (table `program_assignments`) accessible via API.
 
 ---
 
@@ -109,8 +109,8 @@ Ce document définit la feuille de route séquentielle pour le développement du
 - [ ] **Heatmap UI** : Reproduction du composant Heatmap Musculaire (SVG interactif).
 
 ### 6.2. Dashboard Home
-- [ ] **Activity Feed** : Liste chronologique des événements récents ("X a fini sa séance").
-- [ ] **KPI Cards** : Widgets simples (Clients actifs, Séances cette semaine).
+- [ ] **Activity Feed** : Liste chronologique des événements récents.
+- [/] **KPI Cards** : Widgets de statistiques (Nb Clients) - *En cours/Partiel*.
 
 ---
 
