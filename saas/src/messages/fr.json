@@ -122,7 +122,8 @@
             "syncInstructions": "Le client doit saisir ce jeton dans l'application mobile pour synchroniser ses données avec votre tableau de bord.",
             "noProgramAssigned": "Aucun Programme Assigné",
             "noProgramAssignedDesc": "Assignez un programme pour aider cet athlète à atteindre ses objectifs.",
-            "noDescription": "Aucune description disponible."
+            "noDescription": "Aucune description disponible.",
+            "paginationComingSoon": "Affichage des 5 derniers éléments. La pagination arrive en v1.1"
         },
         "analytics": {
             "volumeTitle": "Volume d'entraînement",
@@ -140,7 +141,6 @@
             "success": "Programme assigné avec succès",
             "error": "Échec de l'assignation du programme",
             "selectProgramError": "Veuillez sélectionner un programme",
-            "paginationComingSoon": "Affichage des 5 derniers éléments. La pagination arrive en v1.1",
             "status": "Statut",
             "assignedOn": "Assigné le",
             "viewFullDetails": "Voir Détails Complets"

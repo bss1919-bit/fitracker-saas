@@ -70,13 +70,10 @@ export function ClientAnalytics({ activities, locale }: ClientAnalyticsProps) {
         <div className="space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <Card className="bg-slate-900 border-slate-800 text-white rounded-3xl overflow-hidden shadow-2xl shadow-black/50 border-2 border-indigo-500/10 transition-all hover:border-indigo-500/20">
-                    <CardHeader className="bg-slate-950/50 border-b border-slate-800">
-                        <CardTitle className={cn(
-                            "text-[10px] font-bold text-slate-500 flex items-center gap-2",
-                            locale !== 'ar' && "uppercase tracking-widest"
-                        )}>
-                            <TrendingUp size={14} className="text-emerald-400" />
-                            {t("volumeTitle")}
+                    <CardHeader className="bg-slate-950/50 border-b border-slate-800 p-6">
+                        <CardTitle className="text-2xl font-black text-white flex items-center gap-3 leading-tight">
+                            <TrendingUp size={24} className="text-emerald-400 shrink-0" />
+                            <span>{t("volumeTitle")}</span>
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="h-[350px] p-8">
@@ -127,13 +124,10 @@ export function ClientAnalytics({ activities, locale }: ClientAnalyticsProps) {
                 </Card>
 
                 <Card className="bg-slate-900 border-slate-800 text-white rounded-3xl overflow-hidden shadow-2xl shadow-black/50 border-2 border-indigo-500/10 transition-all hover:border-indigo-500/20">
-                    <CardHeader className="bg-slate-950/50 border-b border-slate-800">
-                        <CardTitle className={cn(
-                            "text-[10px] font-bold text-slate-500 flex items-center gap-2",
-                            locale !== 'ar' && "uppercase tracking-widest"
-                        )}>
-                            <Activity size={14} className="text-indigo-400" />
-                            {t("frequencyTitle")}
+                    <CardHeader className="bg-slate-950/50 border-b border-slate-800 p-6">
+                        <CardTitle className="text-2xl font-black text-white flex items-center gap-3 leading-tight">
+                            <Activity size={24} className="text-indigo-400 shrink-0" />
+                            <span>{t("frequencyTitle")}</span>
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="flex flex-col items-center justify-center p-8 h-full min-h-[350px]">

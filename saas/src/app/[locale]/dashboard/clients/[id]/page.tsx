@@ -9,6 +9,7 @@ import { RecentActivity } from "@/components/clients/activity/recent-activity"
 import { AssignProgramModal } from "@/components/clients/assign-program-modal"
 import { ClientAnalytics } from "@/components/clients/client-analytics"
 import { cn } from "@/lib/utils"
+import { Link } from "@/i18n/routing"
 
 export default async function ClientProfilePage({
     params
@@ -133,13 +134,10 @@ export default async function ClientProfilePage({
                 <TabsContent value="summary" className="space-y-8 outline-none">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <Card className="bg-slate-900 border-slate-800 text-white rounded-3xl overflow-hidden shadow-2xl shadow-black/50 border-2 border-indigo-500/10 transition-all hover:border-indigo-500/20">
-                            <CardHeader className="bg-slate-950/50 border-b border-slate-800">
-                                <CardTitle className={cn(
-                                    "text-[10px] font-bold text-slate-500 flex items-center gap-2",
-                                    locale !== 'ar' && "uppercase tracking-[0.2em]"
-                                )}>
-                                    <Activity size={14} className="text-indigo-500" />
-                                    {t("profile.lastActivity")}
+                            <CardHeader className="bg-slate-950/50 border-b border-slate-800 p-6">
+                                <CardTitle className="text-2xl font-black text-white flex items-center gap-3 leading-tight">
+                                    <Activity size={24} className="text-indigo-500 shrink-0" />
+                                    <span>{t("profile.lastActivity")}</span>
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="p-8">
@@ -168,13 +166,10 @@ export default async function ClientProfilePage({
                         </Card>
 
                         <Card className="md:col-span-2 bg-slate-900 border-slate-800 text-white rounded-3xl overflow-hidden shadow-2xl shadow-black/50 border-2 border-indigo-500/10 transition-all hover:border-indigo-500/20">
-                            <CardHeader className="bg-slate-950/50 border-b border-slate-800">
-                                <CardTitle className={cn(
-                                    "text-[10px] font-bold text-slate-500 flex items-center gap-2",
-                                    locale !== 'ar' && "uppercase tracking-[0.2em]"
-                                )}>
-                                    <FileText size={14} className="text-indigo-500" />
-                                    {t("profile.notes")}
+                            <CardHeader className="bg-slate-950/50 border-b border-slate-800 p-6">
+                                <CardTitle className="text-2xl font-black text-white flex items-center gap-3 leading-tight">
+                                    <FileText size={24} className="text-indigo-500 shrink-0" />
+                                    <span>{t("profile.notes")}</span>
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="p-8">
@@ -188,13 +183,10 @@ export default async function ClientProfilePage({
                         </Card>
 
                         <Card className="bg-slate-900 border-slate-800 text-white rounded-3xl overflow-hidden shadow-2xl shadow-black/50 border-2 border-indigo-500/10 transition-all hover:border-indigo-500/20">
-                            <CardHeader className="bg-slate-950/50 border-b border-slate-800">
-                                <CardTitle className={cn(
-                                    "text-[10px] font-bold text-slate-500 flex items-center gap-2",
-                                    locale !== 'ar' && "uppercase tracking-[0.2em]"
-                                )}>
-                                    <Settings size={14} className="text-indigo-500" />
-                                    {t("profile.syncConfiguration")}
+                            <CardHeader className="bg-slate-950/50 border-b border-slate-800 p-6">
+                                <CardTitle className="text-2xl font-black text-white flex items-center gap-3 leading-tight">
+                                    <Settings size={24} className="text-indigo-500 shrink-0" />
+                                    <span>{t("profile.syncConfiguration")}</span>
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="p-6 space-y-4">
@@ -244,7 +236,7 @@ export default async function ClientProfilePage({
                             <Card className="bg-slate-900 border-slate-800 text-white rounded-[2rem] overflow-hidden shadow-2xl shadow-black/50 border-2 border-indigo-500/10 group">
                                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.03] to-transparent pointer-events-none" />
                                 <CardHeader className="bg-slate-950/50 border-b border-slate-800 p-8">
-                                    <CardTitle className="text-3xl font-bold tracking-tight mb-2">
+                                    <CardTitle className="text-2xl font-black mb-2">
                                         {(activeAssignment.coach_programs as any)?.name?.default || (activeAssignment.coach_programs as any)?.name}
                                     </CardTitle>
                                     <p className="text-slate-400 text-lg">
@@ -270,12 +262,15 @@ export default async function ClientProfilePage({
                                             <p className="text-white font-bold">{activeAssignment.created_at ? new Date(activeAssignment.created_at).toLocaleDateString(locale) : "-"}</p>
                                         </div>
                                         <div className="p-6 bg-slate-950/50 border border-slate-800 rounded-2xl flex items-center justify-center">
-                                            <button className={cn(
-                                                "text-indigo-400 font-bold hover:text-indigo-300 transition-colors text-[10px]",
-                                                locale !== 'ar' && "uppercase tracking-widest"
-                                            )}>
+                                            <Link
+                                                href={`/dashboard/programs/${(activeAssignment.coach_programs as any)?.id}`}
+                                                className={cn(
+                                                    "text-indigo-400 font-bold hover:text-indigo-300 transition-colors text-[10px]",
+                                                    locale !== 'ar' && "uppercase tracking-widest"
+                                                )}
+                                            >
                                                 {t("assign.viewFullDetails") || "View Full Details"}
-                                            </button>
+                                            </Link>
                                         </div>
                                     </div>
                                 </CardContent>
@@ -301,7 +296,7 @@ export default async function ClientProfilePage({
                 <TabsContent value="history" className="space-y-8 outline-none">
                     <div className="space-y-6">
                         <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                            <Activity size={20} className="text-indigo-500" />
+                            <Activity size={24} className="text-indigo-500" />
                             {t("profile.historyDetailed")}
                         </h3>
                         <RecentActivity activities={activities || []} locale={locale} />
