@@ -11,6 +11,15 @@ export default async function DashboardPage() {
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return null
 
+    // Fetch coach profile
+    const { data: coach } = await supabase
+        .from("coaches")
+        .select("full_name")
+        .eq("id", user.id)
+        .single()
+
+    const displayName = coach?.full_name || user.user_metadata?.full_name || t("coach")
+
     // Fetch some quick stats
     const { count: clientsCount } = await supabase
         .from("clients")
@@ -18,16 +27,16 @@ export default async function DashboardPage() {
         .eq("coach_id", user.id)
 
     const stats = [
-        { label: "Active Clients", value: clientsCount || 0, icon: Users, color: "text-blue-400" },
-        { label: "Programs Built", value: 0, icon: Dumbbell, color: "text-indigo-400" },
-        { label: "Active Sessions", value: 0, icon: Calendar, color: "text-emerald-400" },
+        { label: t("activeClients"), value: clientsCount || 0, icon: Users, color: "text-blue-400" },
+        { label: t("programsBuilt"), value: 0, icon: Dumbbell, color: "text-indigo-400" },
+        { label: t("activeSessions"), value: 0, icon: Calendar, color: "text-emerald-400" },
     ]
 
     return (
         <div className="p-8 max-w-7xl mx-auto space-y-12">
             <header>
                 <h1 className="text-3xl font-bold text-white">{t("title")}</h1>
-                <p className="text-slate-400 mt-2">{t("welcome")}</p>
+                <p className="text-slate-400 mt-2">{t("welcome", { name: displayName })}</p>
             </header>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -52,8 +61,8 @@ export default async function DashboardPage() {
                             <Calendar size={32} />
                         </div>
                         <div>
-                            <h3 className="text-lg font-semibold text-white">Recent Activity</h3>
-                            <p className="text-slate-500 max-w-xs mx-auto">Your athletes haven't logged any workouts yet. Once they do, they'll appear here.</p>
+                            <h3 className="text-lg font-semibold text-white">{t("recentActivity")}</h3>
+                            <p className="text-slate-500 max-w-xs mx-auto">{t("noActivity")}</p>
                         </div>
                     </div>
                 </div>

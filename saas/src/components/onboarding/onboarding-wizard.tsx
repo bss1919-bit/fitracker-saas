@@ -56,7 +56,7 @@ export function OnboardingWizard() {
         try {
             console.log("Final submission step");
             const { data: { user } } = await supabase.auth.getUser();
-            if (!user) throw new Error("No user found");
+            if (!user) throw new Error(t("noUser"));
 
             let logoUrl = null;
 
@@ -74,7 +74,7 @@ export function OnboardingWizard() {
 
                 if (uploadError) {
                     console.error("Upload error", uploadError);
-                    toast.error("Logo upload failed, but saving profile...");
+                    toast.error(t("logoUploadError"));
                 } else {
                     const { data: { publicUrl } } = supabase.storage
                         .from('coach-assets')
@@ -101,12 +101,12 @@ export function OnboardingWizard() {
 
             if (error) throw error;
 
-            toast.success("Profile Setup Complete!");
+            toast.success(t("success"));
             router.push('/dashboard');
             router.refresh();
 
         } catch (error: any) {
-            toast.error("Error: " + error.message);
+            toast.error(t("error", { message: error.message }));
             setIsUploading(false);
         }
     }
@@ -130,7 +130,7 @@ export function OnboardingWizard() {
                                         <FormItem>
                                             <FormLabel>{t('businessName')}</FormLabel>
                                             <FormControl>
-                                                <Input placeholder="FitTracker Elite Coaching" {...field} className="bg-slate-950 border-slate-800" />
+                                                <Input placeholder={t("businessPlaceholder")} {...field} className="bg-slate-950 border-slate-800" />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -157,7 +157,7 @@ export function OnboardingWizard() {
                                         <FormItem>
                                             <FormLabel>{t('website')}</FormLabel>
                                             <FormControl>
-                                                <Input placeholder="https://..." {...field} className="bg-slate-950 border-slate-800" />
+                                                <Input placeholder={t("websitePlaceholder")} {...field} className="bg-slate-950 border-slate-800" />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -176,7 +176,7 @@ export function OnboardingWizard() {
                                         <FormControl>
                                             <Input placeholder={t('specialtiesPlaceholder')} {...field} className="bg-slate-950 border-slate-800" />
                                         </FormControl>
-                                        <FormDescription>Separate with commas</FormDescription>
+                                        <FormDescription>{t("specialtiesComma")}</FormDescription>
                                         <FormMessage />
                                     </FormItem>
                                 )}

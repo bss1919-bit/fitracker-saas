@@ -1,6 +1,6 @@
 "use client"
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { Link, usePathname } from '@/i18n/routing';
 import { cn } from '@/lib/utils';
 import {
@@ -16,12 +16,14 @@ import {
 import { useState } from 'react';
 import { UserNav } from './user-nav';
 
-export function Sidebar({ isAdmin }: { isAdmin?: boolean }) {
+export function Sidebar({ isAdmin, isImpersonating }: { isAdmin?: boolean; isImpersonating?: boolean }) {
     const t = useTranslations('Navigation');
+    const locale = useLocale();
+    const isRtl = locale === 'ar';
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
 
-    const navItems = [
+    const coachItems = [
         {
             label: t('dashboard'),
             href: '/dashboard',
@@ -49,19 +51,30 @@ export function Sidebar({ isAdmin }: { isAdmin?: boolean }) {
         },
     ];
 
-    if (isAdmin) {
-        navItems.push({
+    const adminItems = [
+        {
             label: t('admin'),
             href: '/admin',
             icon: ShieldCheck,
-        });
+        },
+    ];
+
+    let displayItems = [];
+    if (isAdmin) {
+        if (isImpersonating) {
+            displayItems = [...coachItems, ...adminItems];
+        } else {
+            displayItems = adminItems;
+        }
+    } else {
+        displayItems = coachItems;
     }
 
     return (
         <>
             {/* Mobile Toggle */}
             <button
-                className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-slate-900 border border-slate-800 rounded-md text-slate-400"
+                className="lg:hidden fixed top-4 start-4 z-50 p-2 bg-slate-900 border border-slate-800 rounded-md text-slate-400"
                 onClick={() => setIsOpen(!isOpen)}
             >
                 {isOpen ? <X size={20} /> : <Menu size={20} />}
@@ -69,8 +82,8 @@ export function Sidebar({ isAdmin }: { isAdmin?: boolean }) {
 
             {/* Sidebar */}
             <aside className={cn(
-                "fixed inset-y-0 left-0 z-40 w-64 bg-slate-950 border-r border-slate-800 transition-transform lg:translate-x-0",
-                isOpen ? "translate-x-0" : "-translate-x-full"
+                "fixed inset-y-0 start-0 z-40 w-64 bg-slate-950 border-e border-slate-800 transition-transform lg:translate-x-0",
+                isOpen ? "translate-x-0" : (isRtl ? "translate-x-full" : "-translate-x-full")
             )}>
                 <div className="flex flex-col h-full">
                     <div className="p-6">
@@ -80,7 +93,7 @@ export function Sidebar({ isAdmin }: { isAdmin?: boolean }) {
                     </div>
 
                     <nav className="flex-1 px-4 space-y-1">
-                        {navItems.map((item) => {
+                        {displayItems.map((item: any) => {
                             const isActive = pathname === item.href;
                             return (
                                 <Link

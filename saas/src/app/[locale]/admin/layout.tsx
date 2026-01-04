@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createClient, createAdminClient } from "@/lib/supabase/server";
 import { redirect } from "@/i18n/routing";
 import { Sidebar } from "@/components/dashboard/sidebar"; // We might want a different sidebar for admin later
 
@@ -19,14 +19,15 @@ export default async function AdminLayout({
         return null;
     }
 
-    // Check if user is an admin
-    const { data: admin, error } = await supabase
+    // Check if user is an admin bypassing RLS
+    const adminSupabase = createAdminClient();
+    const { data: admin } = await adminSupabase
         .from('admins')
         .select('role')
         .eq('id', user.id)
-        .single();
+        .maybeSingle();
 
-    if (error || !admin) {
+    if (!admin) {
         // Not an admin, redirect to normal dashboard
         redirect({ href: '/dashboard', locale });
         return null;
@@ -34,8 +35,8 @@ export default async function AdminLayout({
 
     return (
         <div className="min-h-screen bg-slate-950">
-            <Sidebar /> {/* For now reuse sidebar, but will adapt it */}
-            <div className="lg:pl-64 flex flex-col min-h-screen">
+            <Sidebar isAdmin={true} /> {/* For now reuse sidebar, but will adapt it */}
+            <div className="lg:ps-64 flex flex-col min-h-screen">
                 <main className="flex-1">
                     {children}
                 </main>

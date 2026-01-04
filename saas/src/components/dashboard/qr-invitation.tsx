@@ -26,7 +26,7 @@ export function QRInvitation({ coachId }: QRInvitationProps) {
         if (!invitationUrl) return;
         navigator.clipboard.writeText(invitationUrl)
         setCopied(true)
-        toast.success("Link copied to clipboard")
+        toast.success(t("invite.copySuccess"))
         setTimeout(() => setCopied(false), 2000)
     }
 
@@ -35,9 +35,9 @@ export function QRInvitation({ coachId }: QRInvitationProps) {
     return (
         <Card className="bg-slate-900 border-slate-800 text-white overflow-hidden">
             <CardHeader className="text-center">
-                <CardTitle>Invite Athletes</CardTitle>
+                <CardTitle>{t("invite.title")}</CardTitle>
                 <CardDescription className="text-slate-400">
-                    Share your professional invitation QR code or link
+                    {t("invite.description")}
                 </CardDescription>
             </CardHeader>
             <CardContent className="flex flex-col items-center space-y-6">

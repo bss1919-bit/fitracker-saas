@@ -29,18 +29,18 @@ import {
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 
-const clientSchema = z.object({
-    firstName: z.string().min(1, "First name is required"),
-    lastName: z.string().optional(),
-    email: z.string().email("Invalid email").optional().or(z.literal("")),
-    notes: z.string().optional(),
-})
-
 export function AddClientDialog() {
     const t = useTranslations("Clients")
     const router = useRouter()
     const supabase = createClient()
     const [open, setOpen] = useState(false)
+
+    const clientSchema = z.object({
+        firstName: z.string().min(1, t("form.firstNameRequired")),
+        lastName: z.string().optional(),
+        email: z.string().email(t("form.invalidEmail")).optional().or(z.literal("")),
+        notes: z.string().optional(),
+    })
 
     const form = useForm<z.infer<typeof clientSchema>>({
         resolver: zodResolver(clientSchema),
@@ -91,7 +91,7 @@ export function AddClientDialog() {
                 <DialogHeader>
                     <DialogTitle>{t("addNew")}</DialogTitle>
                     <DialogDescription className="text-slate-400">
-                        {t("form.notes")}
+                        {t("form.addNewDescription")}
                     </DialogDescription>
                 </DialogHeader>
                 <Form {...form}>

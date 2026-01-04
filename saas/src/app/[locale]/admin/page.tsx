@@ -10,8 +10,14 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
+import { impersonateCoach } from "./actions"
 
-export default async function AdminDashboard() {
+export default async function AdminDashboard({
+    params
+}: {
+    params: Promise<{ locale: string }>
+}) {
+    const { locale } = await params
     const t = await getTranslations("Admin")
     const supabase = await createClient()
 
@@ -34,14 +40,14 @@ export default async function AdminDashboard() {
     const stats = [
         { label: t("coachesCount"), value: coachesCount || 0, icon: GraduationCap, color: "text-amber-400" },
         { label: t("clientsCount"), value: clientsCount || 0, icon: Users, color: "text-blue-400" },
-        { label: "Active Subs", value: 0, icon: TrendingUp, color: "text-emerald-400" },
+        { label: t("activeSubs"), value: 0, icon: TrendingUp, color: "text-emerald-400" },
     ]
 
     return (
         <div className="p-8 max-w-7xl mx-auto space-y-12">
             <header>
                 <h1 className="text-3xl font-bold text-white">{t("title")}</h1>
-                <p className="text-slate-400 mt-2">Managing the FitTracker platform ecosystem</p>
+                <p className="text-slate-400 mt-2">{t("description")}</p>
             </header>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -64,7 +70,7 @@ export default async function AdminDashboard() {
                     <div className="relative">
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={16} />
                         <input
-                            placeholder="Search coaches..."
+                            placeholder={t("searchPlaceholder")}
                             className="pl-10 pr-4 py-2 bg-slate-900 border border-slate-800 rounded-lg text-sm text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 w-64"
                         />
                     </div>
@@ -85,7 +91,7 @@ export default async function AdminDashboard() {
                             {recentCoaches?.map((coach) => (
                                 <TableRow key={coach.id} className="border-slate-800 hover:bg-slate-800/50 transition-colors">
                                     <TableCell className="font-medium text-white">
-                                        {coach.business_name || coach.full_name || "New Coach"}
+                                        {coach.business_name || coach.full_name || t("newCoach")}
                                     </TableCell>
                                     <TableCell className="text-slate-400">{coach.email}</TableCell>
                                     <TableCell>
@@ -97,9 +103,22 @@ export default async function AdminDashboard() {
                                         {new Date(coach.created_at!).toLocaleDateString()}
                                     </TableCell>
                                     <TableCell className="text-right">
-                                        <button className="text-xs font-bold text-indigo-400 hover:underline">
-                                            Manage
-                                        </button>
+                                        <div className="flex justify-end gap-2">
+                                            <form action={async () => {
+                                                "use server"
+                                                await impersonateCoach(coach.id, locale)
+                                            }}>
+                                                <button
+                                                    type="submit"
+                                                    className="px-3 py-1 bg-indigo-600/10 hover:bg-indigo-600 border border-indigo-500/30 text-indigo-400 hover:text-white rounded-lg text-xs font-black transition-all"
+                                                >
+                                                    {t("table.impersonate")}
+                                                </button>
+                                            </form>
+                                            <button className="px-3 py-1 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-400 hover:text-white rounded-lg text-xs font-black transition-all">
+                                                {t("table.manage")}
+                                            </button>
+                                        </div>
                                     </TableCell>
                                 </TableRow>
                             ))}

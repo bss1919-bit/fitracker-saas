@@ -86,8 +86,8 @@ Ce document définit la feuille de route séquentielle pour le développement du
 *Objectif : Créer de la valeur pour le coach (Outil de travail).*
 
 ### 5.1. Bibliothèque Exercices
-- [ ] **Exercise Browser** : Explorateur d'exercices avec recherche et filtres (Muscle, Matériel).
-- [ ] **Custom Exercises** : Formulaire de création d'exercice privé + Upload Vidéo.
+- [x] **Exercise Browser** : Explorateur d'exercices avec recherche et filtres (Muscle, Matériel).
+- [x] **Custom Exercises** : Formulaire de création d'exercice privé + Upload Vidéo.
 
 ### 5.2. Workout Editor (Le gros morceau)
 - [ ] **DnD Interface** : Implémentation de `@hello-pangea/dnd` ou `dnd-kit` pour construire la structure.

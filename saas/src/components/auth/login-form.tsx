@@ -44,7 +44,7 @@ export function LoginForm() {
         })
 
         if (error) {
-            toast.error("Error: " + error.message);
+            toast.error(t("loginError", { message: error.message }));
             return;
         }
 
@@ -63,7 +63,7 @@ export function LoginForm() {
                         <FormItem>
                             <FormLabel>{t('email')}</FormLabel>
                             <FormControl>
-                                <Input placeholder="coach@example.com" {...field} className="bg-slate-900 border-slate-800" />
+                                <Input placeholder={t("emailPlaceholder")} {...field} className="bg-slate-900 border-slate-800" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>

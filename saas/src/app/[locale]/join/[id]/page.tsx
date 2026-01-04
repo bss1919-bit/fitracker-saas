@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server"
 import { createClient } from "@/lib/supabase/server"
 import { notFound } from "next/navigation"
 import { Button } from "@/components/ui/button"
@@ -11,6 +12,7 @@ export default async function JoinPage({
     params: Promise<{ id: string; locale: string }>
 }) {
     const { id } = await params
+    const t = await getTranslations("Join")
     const supabase = await createClient()
 
     // Fetch coach info
@@ -24,7 +26,7 @@ export default async function JoinPage({
         notFound()
     }
 
-    const coachName = coach.business_name || coach.full_name || "a professional coach"
+    const coachName = coach.business_name || coach.full_name || t("fallbackName")
 
     return (
         <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-6 text-white">
@@ -41,9 +43,9 @@ export default async function JoinPage({
                 )}
 
                 <header className="space-y-2">
-                    <h1 className="text-3xl font-bold tracking-tight">You've been invited!</h1>
+                    <h1 className="text-3xl font-bold tracking-tight">{t("title")}</h1>
                     <p className="text-slate-400">
-                        Join <strong>{coachName}</strong> on FitTracker Pro to start your training journey.
+                        {t("description", { name: coachName })}
                     </p>
                 </header>
 
@@ -51,32 +53,32 @@ export default async function JoinPage({
                     <CardHeader>
                         <CardTitle className="text-xl flex items-center gap-2">
                             <Smartphone className="text-indigo-400" size={20} />
-                            How to join
+                            {t("howTo")}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-6">
                         <div className="flex gap-4">
                             <div className="flex-shrink-0 w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center font-bold text-sm">1</div>
                             <div className="space-y-1">
-                                <p className="font-medium">Download the mobile app</p>
-                                <p className="text-sm text-slate-500">Available on iOS and Android</p>
+                                <p className="font-medium">{t("step1")}</p>
+                                <p className="text-sm text-slate-500">{t("step1Desc")}</p>
                             </div>
                         </div>
 
                         <div className="flex gap-4">
                             <div className="flex-shrink-0 w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center font-bold text-sm">2</div>
                             <div className="space-y-1">
-                                <p className="font-medium">Open the app & Scan the QR</p>
-                                <p className="text-sm text-slate-500">Or use the link provided by your coach</p>
+                                <p className="font-medium">{t("step2")}</p>
+                                <p className="text-sm text-slate-500">{t("step2Desc")}</p>
                             </div>
                         </div>
 
                         <div className="pt-4 space-y-3">
                             <Button className="w-full bg-indigo-600 hover:bg-indigo-700 h-12 text-lg font-semibold group">
                                 <Download className="mr-2 group-hover:translate-y-0.5 transition-transform" size={20} />
-                                Download App
+                                {t("download")}
                             </Button>
-                            <p className="text-[10px] text-center text-slate-600 uppercase tracking-widest font-bold">Deep link will be active soon</p>
+                            <p className="text-[10px] text-center text-slate-600 uppercase tracking-widest font-bold">{t("deepLink")}</p>
                         </div>
                     </CardContent>
                 </Card>
@@ -87,7 +89,7 @@ export default async function JoinPage({
                     </div>
                     <div className="flex gap-2">
                         <CheckCircle2 size={16} className="text-emerald-500/50" />
-                        <span className="text-xs text-slate-600 italic">Powering professional coaching worldwide</span>
+                        <span className="text-xs text-slate-600 italic">{t("footer")}</span>
                     </div>
                 </footer>
             </div>
