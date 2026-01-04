@@ -144,7 +144,21 @@
             "status": "Status",
             "assignedOn": "Assigned On",
             "viewFullDetails": "View Full Details"
-        }
+        },
+        "linkClient": "Link a Client",
+        "linkClientTitle": "Link a Client via QR Code",
+        "linkClientDesc": "Scan the client's QR code from their mobile app to link them to your profile.",
+        "openCamera": "Open Camera",
+        "rescan": "Rescan",
+        "confirmLink": "Confirm & Link",
+        "cancel": "Cancel",
+        "errorCamera": "Could not access camera",
+        "errorInvalidQrType": "Invalid QR code type",
+        "errorInvalidQr": "Invalid or corrupted QR code",
+        "errorLink": "Error linking client",
+        "ageGender": "Age / Gender",
+        "weightHeight": "Weight / Height",
+        "goal": "Goal"
     },
     "Admin": {
         "title": "Super Admin Panel",

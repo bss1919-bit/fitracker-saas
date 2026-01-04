@@ -7,20 +7,46 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Copy, Check } from "lucide-react"
 import { useState, useEffect } from "react"
 import { toast } from "sonner"
+import CryptoJS from "crypto-js"
 
 interface QRInvitationProps {
     coachId: string
+    coachName: string
 }
 
-export function QRInvitation({ coachId }: QRInvitationProps) {
+export function QRInvitation({ coachId, coachName }: QRInvitationProps) {
     const t = useTranslations("Clients")
     const [copied, setCopied] = useState(false)
     const [invitationUrl, setInvitationUrl] = useState("")
+    const [qrData, setQrData] = useState("")
+
+    const ENCRYPTION_KEY = 'FitTrackerPro_SecureKey_2024_v2.0';
 
     useEffect(() => {
         // Construct the URL only on the client side
-        setInvitationUrl(`${window.location.protocol}//${window.location.host}/join/${coachId}`)
-    }, [coachId])
+        const baseUrl = `${window.location.protocol}//${window.location.host}`
+        const url = `${baseUrl}/join/${coachId}`
+        setInvitationUrl(url)
+
+        // Prepare data for encryption
+        const profileData = {
+            'name': coachName,
+            'uuid': coachId,
+            'url': `${baseUrl}/join/`
+        }
+
+        // 1. Convert to JSON
+        const jsonData = JSON.stringify(profileData)
+
+        // 2. Encrypt with AES
+        try {
+            const encrypted = CryptoJS.AES.encrypt(jsonData, ENCRYPTION_KEY).toString()
+            setQrData(encrypted)
+        } catch (error) {
+            console.error("Encryption error:", error)
+            setQrData(url) // Fallback to URL if encryption fails
+        }
+    }, [coachId, coachName])
 
     const copyToClipboard = () => {
         if (!invitationUrl) return;
@@ -43,10 +69,18 @@ export function QRInvitation({ coachId }: QRInvitationProps) {
             <CardContent className="flex flex-col items-center space-y-8 p-8">
                 <div className="p-4 bg-white rounded-2xl shadow-2xl shadow-indigo-500/20">
                     <QRCodeSVG
-                        value={invitationUrl}
+                        value={qrData || invitationUrl}
                         size={160}
                         level="H"
                         includeMargin={false}
+                        imageSettings={{
+                            src: "/icon.png",
+                            x: undefined,
+                            y: undefined,
+                            height: 32,
+                            width: 32,
+                            excavate: true,
+                        }}
                     />
                 </div>
 

@@ -157,7 +157,21 @@
             "status": "الحالة",
             "assignedOn": "تم التعيين في",
             "viewFullDetails": "عرض التفاصيل الكاملة"
-        }
+        },
+        "linkClient": "ربط عميل",
+        "linkClientTitle": "ربط عميل عبر رمز QR",
+        "linkClientDesc": "امسح رمز QR الخاص بالعميل من تطبيقه لربطه بملفك الشخصي.",
+        "openCamera": "فتح الكاميرا",
+        "rescan": "إعادة المسح",
+        "confirmLink": "تأكيد والربط",
+        "cancel": "إلغاء",
+        "errorCamera": "تعذر الوصول إلى الكاميرا",
+        "errorInvalidQrType": "نوع رمز QR غير صالح",
+        "errorInvalidQr": "رمز QR غير صالح أو تالف",
+        "errorLink": "خطأ في ربط العميل",
+        "ageGender": "العمر / الجنس",
+        "weightHeight": "الوزن / الطول",
+        "goal": "الهدف"
     },
     "Admin": {
         "title": "لوحة المشرف العام",

@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server"
 import { createClient } from "@/lib/supabase/server"
 import { ClientList } from "@/components/clients/client-list"
 import { AddClientDialog } from "@/components/clients/add-client-dialog"
+import { LinkClientDialog } from "@/components/clients/link-client-dialog"
 import { Metadata } from "next"
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -37,7 +38,10 @@ export default async function ClientsPage() {
                     <h1 className="text-3xl font-bold tracking-tight text-white mb-2">{t("title")}</h1>
                     <p className="text-slate-400">{t("form.addNewDescription")}</p>
                 </div>
-                <AddClientDialog />
+                <div className="flex gap-4">
+                    <LinkClientDialog />
+                    <AddClientDialog />
+                </div>
             </header>
 
             <ClientList clients={clients || []} />

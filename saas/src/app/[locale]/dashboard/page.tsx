@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server"
 import { createClient } from "@/lib/supabase/server"
 import { QRInvitation } from "@/components/dashboard/qr-invitation"
+import { LinkClientDialog } from "@/components/clients/link-client-dialog"
 import { Users, Dumbbell, Calendar, ArrowUpRight, Activity } from "lucide-react"
 import { Metadata } from "next"
 
@@ -81,6 +82,9 @@ export default async function DashboardPage() {
                         {t("welcome", { name: (coach?.full_name || user.user_metadata?.full_name || 'Coach').split(' ')[0] })}
                     </p>
                 </div>
+                <div className="flex items-center gap-4">
+                    <LinkClientDialog />
+                </div>
             </header>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -145,7 +149,7 @@ export default async function DashboardPage() {
                 </div>
 
                 <div className="space-y-6">
-                    <QRInvitation coachId={user.id} />
+                    <QRInvitation coachId={user.id} coachName={displayName} />
                 </div>
             </div>
         </div>
