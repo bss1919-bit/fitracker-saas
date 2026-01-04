@@ -124,20 +124,20 @@
                 "volumeTitle": "Training Volume",
                 "frequencyTitle": "Workout Frequency",
                 "noData": "No data available for analytics yet. Once the client syncs their workouts, you'll see charts here."
-            },
-            "assign": {
-                "trigger": "Assign Program",
-                "title": "Assign a Program",
-                "selectProgram": "Select a Program",
-                "placeholder": "Choose a program...",
-                "startDate": "Start Date",
-                "cancel": "Cancel",
-                "submit": "Assign",
-                "success": "Program assigned successfully",
-                "error": "Failed to assign program",
-                "selectProgramError": "Please select a program",
-                "paginationComingSoon": "Showing last 5 items. Pagination coming in v1.1"
             }
+        },
+        "assign": {
+            "trigger": "Assign Program",
+            "title": "Assign a Program",
+            "selectProgram": "Select a Program",
+            "placeholder": "Choose a program...",
+            "startDate": "Start Date",
+            "cancel": "Cancel",
+            "submit": "Assign",
+            "success": "Program assigned successfully",
+            "error": "Failed to assign program",
+            "selectProgramError": "Please select a program",
+            "paginationComingSoon": "Showing last 5 items. Pagination coming in v1.1"
         }
     },
     "Admin": {

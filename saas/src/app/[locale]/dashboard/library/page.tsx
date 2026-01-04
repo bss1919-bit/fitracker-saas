@@ -20,13 +20,13 @@ export default async function LibraryPage() {
 
     return (
         <div className="p-8 max-w-7xl mx-auto space-y-12">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <header className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                 <div>
                     <h1 className="text-3xl font-bold tracking-tight text-white mb-2">{t("title")}</h1>
                     <p className="text-slate-400">{t("description")}</p>
                 </div>
                 <AddExerciseDialog />
-            </div>
+            </header>
 
             <div className="flex items-center gap-4 bg-slate-900/50 p-4 rounded-2xl border border-slate-800">
                 <div className="relative flex-1">

@@ -29,7 +29,7 @@ export default async function ProgramsPage() {
 
     return (
         <div className="p-8 max-w-7xl mx-auto space-y-12">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <header className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                 <div>
                     <h1 className="text-3xl font-bold tracking-tight text-white mb-2">{navT("programs")}</h1>
                     <p className="text-slate-400 max-w-2xl">{t("description")}</p>
@@ -42,7 +42,7 @@ export default async function ProgramsPage() {
                         </Button>
                     </Link>
                 </div>
-            </div>
+            </header>
 
             {(!programs || programs.length === 0) ? (
                 <div className="flex flex-col items-center justify-center p-20 bg-slate-900/50 border border-dashed border-slate-800 rounded-3xl text-center space-y-4">

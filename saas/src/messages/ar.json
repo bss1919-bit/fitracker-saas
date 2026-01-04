@@ -137,20 +137,20 @@
                 "volumeTitle": "حجم التدريب",
                 "frequencyTitle": "وتيرة التمرين",
                 "noData": "لا توجد بيانات متاحة للتحليلات بعد. بمجرد قيام العميل بمزامنة تمارينهم، سترى الرسوم البيانية هنا."
-            },
-            "assign": {
-                "trigger": "تعيين برنامج",
-                "title": "تعيين برنامج",
-                "selectProgram": "اختر برنامجاً",
-                "placeholder": "اختر برنامجاً...",
-                "startDate": "تاريخ البدء",
-                "cancel": "إلغاء",
-                "submit": "تعيين",
-                "success": "تم تعيين البرنامج بنجاح",
-                "error": "فشل تعيين البرنامج",
-                "selectProgramError": "يرجى اختيار برنامج",
-                "paginationComingSoon": "عرض آخر 5 عناصر. التصفح (Pagination) قادم في الإصدار 1.1"
             }
+        },
+        "assign": {
+            "trigger": "تعيين برنامج",
+            "title": "تعيين برنامج",
+            "selectProgram": "اختر برنامجاً",
+            "placeholder": "اختر برنامجاً...",
+            "startDate": "تاريخ البدء",
+            "cancel": "إلغاء",
+            "submit": "تعيين",
+            "success": "تم تعيين البرنامج بنجاح",
+            "error": "فشل تعيين البرنامج",
+            "selectProgramError": "يرجى اختيار برنامج",
+            "paginationComingSoon": "عرض آخر 5 عناصر. التصفح (Pagination) قادم في الإصدار 1.1"
         }
     },
     "Admin": {

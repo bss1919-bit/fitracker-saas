@@ -32,13 +32,13 @@ export default async function ClientsPage() {
 
     return (
         <div className="p-8 max-w-7xl mx-auto space-y-12">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <header className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                 <div>
                     <h1 className="text-3xl font-bold tracking-tight text-white mb-2">{t("title")}</h1>
                     <p className="text-slate-400">{t("form.addNewDescription")}</p>
                 </div>
                 <AddClientDialog />
-            </div>
+            </header>
 
             <ClientList clients={clients || []} />
         </div>

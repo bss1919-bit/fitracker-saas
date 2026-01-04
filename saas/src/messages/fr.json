@@ -124,20 +124,20 @@
                 "volumeTitle": "Volume d'entraînement",
                 "frequencyTitle": "Fréquence de séances",
                 "noData": "Aucune donnée disponible pour le moment. Une fois que le client aura synchronisé ses séances, vous verrez les graphiques ici."
-            },
-            "assign": {
-                "trigger": "Assigner un Programme",
-                "title": "Assigner un Programme",
-                "selectProgram": "Choisir un Programme",
-                "placeholder": "Choisir un programme...",
-                "startDate": "Date de Début",
-                "cancel": "Annuler",
-                "submit": "Assigner",
-                "success": "Programme assigné avec succès",
-                "error": "Échec de l'assignation du programme",
-                "selectProgramError": "Veuillez sélectionner un programme",
-                "paginationComingSoon": "Affichage des 5 derniers éléments. La pagination arrive en v1.1"
             }
+        },
+        "assign": {
+            "trigger": "Assigner un Programme",
+            "title": "Assigner un Programme",
+            "selectProgram": "Choisir un Programme",
+            "placeholder": "Choisir un programme...",
+            "startDate": "Date de Début",
+            "cancel": "Annuler",
+            "submit": "Assigner",
+            "success": "Programme assigné avec succès",
+            "error": "Échec de l'assignation du programme",
+            "selectProgramError": "Veuillez sélectionner un programme",
+            "paginationComingSoon": "Affichage des 5 derniers éléments. La pagination arrive en v1.1"
         }
     },
     "Admin": {
