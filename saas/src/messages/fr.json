@@ -98,7 +98,40 @@
             "invalidEmail": "Email invalide",
             "addNewDescription": "Ajoutez un nouvel athlète à votre liste pour commencer à lui assigner des programmes."
         },
-        "noClients": "Aucun client trouvé. Commencez par en ajouter un !"
+        "noClients": "Aucun client trouvé. Commencez par en ajouter un !",
+        "tabs": {
+            "summary": "Résumé",
+            "program": "Programme",
+            "history": "Historique"
+        },
+        "profile": {
+            "lastActivity": "Dernière Activité",
+            "notes": "Notes",
+            "joined": "Inscrit le {date}",
+            "noEmail": "Aucun email fourni",
+            "noActivity": "Aucune activité pour le moment",
+            "waitingSync": "En attente de synchronisation mobile",
+            "recentActivity": "Activité Récente",
+            "noNotes": "Aucune note disponible pour ce client.",
+            "programComing": "Le constructeur de programme arrive en Phase 5",
+            "historyDetailed": "Historique de Synchronisation Détaillé",
+            "synced": "Sync. le {date}",
+            "syncConfiguration": "Configuration Sync",
+            "tokenLabel": "Jeton de Synchronisation Client",
+            "syncInstructions": "Le client doit saisir ce jeton dans l'application mobile pour synchroniser ses données avec votre tableau de bord.",
+            "assign": {
+                "trigger": "Assigner un Programme",
+                "title": "Assigner un Programme",
+                "selectProgram": "Choisir un Programme",
+                "placeholder": "Choisir un programme...",
+                "startDate": "Date de Début",
+                "cancel": "Annuler",
+                "submit": "Assigner",
+                "success": "Programme assigné avec succès",
+                "error": "Échec de l'assignation du programme",
+                "selectProgramError": "Veuillez sélectionner un programme"
+            }
+        }
     },
     "Admin": {
         "title": "Panel Super Admin",
@@ -112,7 +145,10 @@
             "joined": "Inscrit le",
             "actions": "Actions",
             "impersonate": "Impersonner",
-            "manage": "Gérer"
+            "manage": "Gérer",
+            "suspend": "Suspendre",
+            "ban": "Bannir",
+            "activate": "Activer"
         },
         "impersonation": {
             "banner": "Mode Impersonnation : Vous agissez en tant que {name}",
@@ -231,5 +267,24 @@
         "deepLink": "Le lien automatique sera bientôt disponible",
         "footer": "Propulse le coaching professionnel dans le monde entier",
         "fallbackName": "un coach professionnel"
+    },
+    "Settings": {
+        "title": "Paramètres",
+        "description": "Gérez votre profil de coach et vos préférences d'application.",
+        "profile": "Profil",
+        "fullName": "Nom Complet",
+        "businessName": "Nom de l'Entreprise",
+        "website": "Site Web",
+        "specialties": "Spécialités",
+        "specialtiesPlaceholder": "Ex: Hypertrophie, Force Athlétique",
+        "logo": "Logo du Coach",
+        "save": "Enregistrer les modifications",
+        "success": "Paramètres mis à jour avec succès !",
+        "error": "Échec de la mise à jour des paramètres.",
+        "preferences": "Préférences",
+        "language": "Langue",
+        "units": "Système d'unités",
+        "metric": "Métrique (kg, cm)",
+        "imperial": "Impérial (lb, in)"
     }
 }

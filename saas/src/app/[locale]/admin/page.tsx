@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server"
 import { createClient } from "@/lib/supabase/server"
 import { Users, GraduationCap, TrendingUp, Search } from "lucide-react"
+import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import {
     Table,
@@ -10,7 +11,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import { impersonateCoach } from "./actions"
+import { impersonateCoach, updateCoachStatus } from "./actions"
 
 export default async function AdminDashboard({
     params
@@ -88,19 +89,32 @@ export default async function AdminDashboard({
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {recentCoaches?.map((coach) => (
+                            {recentCoaches?.map((coach: any) => (
                                 <TableRow key={coach.id} className="border-slate-800 hover:bg-slate-800/50 transition-colors">
                                     <TableCell className="font-medium text-white">
                                         {coach.business_name || coach.full_name || t("newCoach")}
                                     </TableCell>
                                     <TableCell className="text-slate-400">{coach.email}</TableCell>
                                     <TableCell>
-                                        <Badge variant="outline" className="border-amber-500/50 text-amber-500 bg-amber-500/5 capitalize">
-                                            {coach.subscription_tier}
-                                        </Badge>
+                                        <div className="flex flex-col gap-1">
+                                            <Badge variant="outline" className="border-indigo-500/50 text-indigo-400 bg-indigo-500/5 capitalize">
+                                                {coach.subscription_tier}
+                                            </Badge>
+                                            <Badge
+                                                variant="outline"
+                                                className={cn(
+                                                    "capitalize",
+                                                    coach.status === 'active' ? "border-emerald-500/50 text-emerald-400 bg-emerald-500/5" :
+                                                        coach.status === 'suspended' ? "border-amber-500/50 text-amber-500 bg-amber-500/5" :
+                                                            "border-red-500/50 text-red-500 bg-red-500/5"
+                                                )}
+                                            >
+                                                {coach.status || 'active'}
+                                            </Badge>
+                                        </div>
                                     </TableCell>
                                     <TableCell className="text-slate-500 text-sm">
-                                        {new Date(coach.created_at!).toLocaleDateString()}
+                                        {new Date(coach.created_at!).toLocaleDateString(locale)}
                                     </TableCell>
                                     <TableCell className="text-right">
                                         <div className="flex justify-end gap-2">
@@ -115,9 +129,39 @@ export default async function AdminDashboard({
                                                     {t("table.impersonate")}
                                                 </button>
                                             </form>
-                                            <button className="px-3 py-1 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-400 hover:text-white rounded-lg text-xs font-black transition-all">
-                                                {t("table.manage")}
-                                            </button>
+
+                                            {coach.status !== 'active' && (
+                                                <form action={async () => {
+                                                    "use server"
+                                                    await updateCoachStatus(coach.id, 'active')
+                                                }}>
+                                                    <button type="submit" className="px-3 py-1 bg-emerald-600/10 hover:bg-emerald-600 border border-emerald-500/30 text-emerald-400 hover:text-white rounded-lg text-xs font-black transition-all">
+                                                        {t("table.activate")}
+                                                    </button>
+                                                </form>
+                                            )}
+
+                                            {coach.status === 'active' && (
+                                                <form action={async () => {
+                                                    "use server"
+                                                    await updateCoachStatus(coach.id, 'suspended')
+                                                }}>
+                                                    <button type="submit" className="px-3 py-1 bg-amber-600/10 hover:bg-amber-600 border border-amber-500/30 text-amber-400 hover:text-white rounded-lg text-xs font-black transition-all">
+                                                        {t("table.suspend")}
+                                                    </button>
+                                                </form>
+                                            )}
+
+                                            {coach.status !== 'banned' && (
+                                                <form action={async () => {
+                                                    "use server"
+                                                    await updateCoachStatus(coach.id, 'banned')
+                                                }}>
+                                                    <button type="submit" className="px-3 py-1 bg-red-600/10 hover:bg-red-600 border border-red-500/30 text-red-400 hover:text-white rounded-lg text-xs font-black transition-all">
+                                                        {t("table.ban")}
+                                                    </button>
+                                                </form>
+                                            )}
                                         </div>
                                     </TableCell>
                                 </TableRow>

@@ -31,7 +31,7 @@ Ce document définit la feuille de route séquentielle pour le développement du
 
 ### 1.2. Onboarding & Profil
 - [x] **Wizard Onboarding** : Formulaire multi-étapes (Nom entreprise, Logo, Spécialités).
-- [ ] **Settings** : Page de gestion du profil coach et préférences (Langue, Unités).
+- [x] **Settings** : Page de gestion du profil coach et préférences (Langue, Unités).
 - [x] **Storage** : Upload du logo entreprise via Supabase Storage.
 
 ---
@@ -60,8 +60,8 @@ Ce document définit la feuille de route séquentielle pour le développement du
 
 ### 3.2. Gestion des Coachs
 - [x] **Coach List** : Table maîtresse des coachs inscrits (Email, Statut, Offre).
-- [ ] **Actions Admin** : Boutons pour Suspendre/Bannir/Valider un coach.
-- [ ] **Impersonation** : Fonctionnalité "Log in as Coach" pour le support.
+- [x] **Actions Admin** : Boutons pour Suspendre/Bannir/Valider un coach.
+- [x] **Impersonation** : Fonctionnalité "Log in as Coach" pour le support.
 
 ---
 
@@ -90,13 +90,13 @@ Ce document définit la feuille de route séquentielle pour le développement du
 - [x] **Custom Exercises** : Formulaire de création d'exercice privé + Upload Vidéo.
 
 ### 5.2. Workout Editor (Le gros morceau)
-- [ ] **DnD Interface** : Implémentation de `@hello-pangea/dnd` ou `dnd-kit` pour construire la structure.
-- [ ] **Composant Set/Rep** : Interface dense pour saisir les targets (Kg, Reps, RPE).
-- [ ] **Superset Logic** : Logique UI pour grouper visuellement A1/A2.
+- [x] **DnD Interface** : Implémentation de `@hello-pangea/dnd` ou `dnd-kit` pour construire la structure.
+- [x] **Composant Set/Rep** : Interface dense pour saisir les targets (Kg, Reps, RPE).
+- [x] **Superset Logic** : Logique UI pour grouper visuellement A1/A2.
 
 ### 5.3. Assignation
-- [ ] **Assign Modal** : Sélectionner un client et une date de début.
-- [ ] **Sync Down** : Mécanisme pour rendre ce programme disponible à l'API de sync (que l'app mobile viendra -pull-).
+- [x] **Assign Modal** : Sélectionner un client et une date de début.
+- [/] **Sync Down** : Mécanisme pour rendre ce programme disponible à l'API de sync (que l'app mobile viendra -pull-).
 
 ---
 

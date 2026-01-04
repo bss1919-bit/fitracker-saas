@@ -5,6 +5,13 @@ import { syncPayloadSchema } from "@/lib/validations/sync";
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
+        const authHeader = req.headers.get("Authorization");
+
+        if (!authHeader || !authHeader.startsWith("Bearer ")) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
+
+        const token = authHeader.split(" ")[1];
 
         // 1. Validate Payload
         const validatedData = syncPayloadSchema.parse(body);
@@ -12,7 +19,19 @@ export async function POST(req: NextRequest) {
 
         const supabase = createAdminClient();
 
-        // 2. Prepare for batch upsert
+        // 2. Authorize
+        const { data: client, error: authError } = await supabase
+            .from("clients")
+            .select("id")
+            .eq("id", clientId)
+            .eq("sync_token", (token as any))
+            .single();
+
+        if (authError || !client) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
+
+        // 3. Prepare for batch upsert
         // We use the unique constraint (client_id, data_type, mobile_object_id)
         const recordsToSync = items.map((item) => ({
             client_id: clientId,
@@ -24,7 +43,7 @@ export async function POST(req: NextRequest) {
             updated_at: new Date().toISOString(),
         }));
 
-        // 3. Upsert into synced_data
+        // 4. Upsert into synced_data
         const { error } = await supabase
             .from("synced_data")
             .upsert(recordsToSync, {

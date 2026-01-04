@@ -4,8 +4,9 @@ import { getTranslations } from "next-intl/server"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Calendar, Mail, FileText, Activity } from "lucide-react"
+import { Calendar, Mail, FileText, Activity, Settings } from "lucide-react"
 import { RecentActivity } from "@/components/clients/activity/recent-activity"
+import { AssignProgramModal } from "@/components/clients/assign-program-modal"
 
 export default async function ClientProfilePage({
     params
@@ -25,6 +26,12 @@ export default async function ClientProfilePage({
     if (error || !client) {
         notFound()
     }
+
+    // Fetch programs for the modal
+    const { data: programs } = await supabase
+        .from("coach_programs")
+        .select("id, name")
+        .eq("is_template", true)
 
     // Fetch recent activity
     const { data: activities } = await supabase
@@ -46,33 +53,35 @@ export default async function ClientProfilePage({
                             {client.first_name} {client.last_name}
                         </h1>
                         <Badge variant="outline" className="border-emerald-500/50 text-emerald-400 bg-emerald-500/5">
-                            {client.status}
+                            {t(`status.${client.status}`)}
                         </Badge>
                     </div>
                     <div className="flex items-center gap-4 text-slate-400">
                         <div className="flex items-center gap-1.5 italic">
                             <Mail size={14} />
-                            <span>{client.email || "No email provided"}</span>
+                            <span>{client.email || t("profile.noEmail")}</span>
                         </div>
                         <div className="flex items-center gap-1.5">
                             <Calendar size={14} />
-                            <span>Joined {new Date(client.created_at!).toLocaleDateString()}</span>
+                            <span>{t("profile.joined", { date: new Date(client.created_at!).toLocaleDateString(locale) })}</span>
                         </div>
                     </div>
                 </div>
+
+                <AssignProgramModal clientId={id} programs={programs || []} />
             </div>
 
             {/* Tabs */}
             <Tabs defaultValue="summary" className="space-y-6">
                 <TabsList className="bg-slate-900 border-slate-800">
                     <TabsTrigger value="summary" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all">
-                        Résumé
+                        {t("tabs.summary")}
                     </TabsTrigger>
                     <TabsTrigger value="program" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all">
-                        Programme
+                        {t("tabs.program")}
                     </TabsTrigger>
                     <TabsTrigger value="history" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all">
-                        Historique
+                        {t("tabs.history")}
                     </TabsTrigger>
                 </TabsList>
 
@@ -82,7 +91,7 @@ export default async function ClientProfilePage({
                             <CardHeader>
                                 <CardTitle className="text-sm font-medium text-slate-400 flex items-center gap-2">
                                     <Activity size={16} className="text-indigo-400" />
-                                    Last Activity
+                                    {t("profile.lastActivity")}
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
@@ -90,13 +99,13 @@ export default async function ClientProfilePage({
                                     <>
                                         <p className="text-2xl font-bold capitalize">{lastSync.data_type.replace("_", " ")}</p>
                                         <p className="text-xs text-slate-500 mt-1 italic">
-                                            Synced {new Date(lastSync.updated_at!).toLocaleDateString()}
+                                            {t("profile.synced", { date: new Date(lastSync.updated_at!).toLocaleDateString(locale) })}
                                         </p>
                                     </>
                                 ) : (
                                     <>
-                                        <p className="text-2xl font-bold">No activity yet</p>
-                                        <p className="text-xs text-slate-500 mt-1 italic">Waiting for mobile sync</p>
+                                        <p className="text-2xl font-bold">{t("profile.noActivity")}</p>
+                                        <p className="text-xs text-slate-500 mt-1 italic">{t("profile.waitingSync")}</p>
                                     </>
                                 )}
                             </CardContent>
@@ -106,18 +115,36 @@ export default async function ClientProfilePage({
                             <CardHeader>
                                 <CardTitle className="text-sm font-medium text-slate-400 flex items-center gap-2">
                                     <FileText size={16} className="text-indigo-400" />
-                                    Notes
+                                    {t("profile.notes")}
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <p className="text-slate-300">
-                                    {client.notes || "No notes available for this client."}
+                                    {client.notes || t("profile.noNotes")}
+                                </p>
+                            </CardContent>
+                        </Card>
+
+                        <Card className="bg-slate-900 border-slate-800 text-white overflow-hidden group">
+                            <CardHeader className="bg-slate-950/50">
+                                <CardTitle className="text-sm font-medium text-slate-400 flex items-center gap-2">
+                                    <Settings size={16} className="text-indigo-400" />
+                                    {t("profile.syncConfiguration")}
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent className="pt-6 space-y-4">
+                                <div className="p-4 bg-slate-950 rounded-xl border border-slate-800 space-y-1">
+                                    <p className="text-[10px] font-black uppercase tracking-widest text-slate-500">{t("profile.tokenLabel")}</p>
+                                    <p className="font-mono text-indigo-400 break-all select-all">{(client as any).sync_token || "N/A"}</p>
+                                </div>
+                                <p className="text-xs text-slate-500 leading-relaxed italic">
+                                    {t("profile.syncInstructions")}
                                 </p>
                             </CardContent>
                         </Card>
 
                         <div className="md:col-span-3 space-y-4">
-                            <h3 className="text-lg font-bold text-white">Recent Activity</h3>
+                            <h3 className="text-lg font-bold text-white">{t("profile.recentActivity")}</h3>
                             <RecentActivity activities={activities || []} locale={locale} />
                         </div>
                     </div>
@@ -125,13 +152,13 @@ export default async function ClientProfilePage({
 
                 <TabsContent value="program">
                     <div className="p-12 bg-slate-900/50 border border-dashed border-slate-800 rounded-2xl text-center">
-                        <p className="text-slate-500">Program Builder coming in Phase 5</p>
+                        <p className="text-slate-500">{t("profile.programComing")}</p>
                     </div>
                 </TabsContent>
 
                 <TabsContent value="history">
                     <div className="space-y-6">
-                        <h3 className="text-lg font-bold text-white">Detailed Sync History</h3>
+                        <h3 className="text-lg font-bold text-white">{t("profile.historyDetailed")}</h3>
                         <RecentActivity activities={activities || []} locale={locale} />
                         {activities && activities.length > 5 && (
                             <p className="text-center text-slate-500 text-sm italic">Showing last 5 items. Pagination coming in v1.1</p>

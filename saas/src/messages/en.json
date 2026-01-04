@@ -98,7 +98,40 @@
             "invalidEmail": "Invalid email",
             "addNewDescription": "Add a new athlete to your list to start assigning programs."
         },
-        "noClients": "No clients found. Start by adding one!"
+        "noClients": "No clients found. Start by adding one!",
+        "tabs": {
+            "summary": "Summary",
+            "program": "Program",
+            "history": "History"
+        },
+        "profile": {
+            "lastActivity": "Last Activity",
+            "notes": "Notes",
+            "joined": "Joined {date}",
+            "noEmail": "No email provided",
+            "noActivity": "No activity yet",
+            "waitingSync": "Waiting for mobile sync",
+            "recentActivity": "Recent Activity",
+            "noNotes": "No notes available for this client.",
+            "programComing": "Program Builder coming in Phase 5",
+            "historyDetailed": "Detailed Sync History",
+            "synced": "Synced {date}",
+            "syncConfiguration": "Sync Configuration",
+            "tokenLabel": "Client Sync Token",
+            "syncInstructions": "The client should enter this token in the mobile app to sync their data with your dashboard.",
+            "assign": {
+                "trigger": "Assign Program",
+                "title": "Assign a Program",
+                "selectProgram": "Select a Program",
+                "placeholder": "Choose a program...",
+                "startDate": "Start Date",
+                "cancel": "Cancel",
+                "submit": "Assign",
+                "success": "Program assigned successfully",
+                "error": "Failed to assign program",
+                "selectProgramError": "Please select a program"
+            }
+        }
     },
     "Admin": {
         "title": "Super Admin Panel",
@@ -112,7 +145,10 @@
             "joined": "Joined",
             "actions": "Actions",
             "impersonate": "Impersonate",
-            "manage": "Manage"
+            "manage": "Manage",
+            "suspend": "Suspend",
+            "ban": "Ban",
+            "activate": "Activate"
         },
         "impersonation": {
             "banner": "Impersonation Mode: Acting as {name}",
@@ -231,5 +267,24 @@
         "deepLink": "Deep link will be active soon",
         "footer": "Powering professional coaching worldwide",
         "fallbackName": "a professional coach"
+    },
+    "Settings": {
+        "title": "Settings",
+        "description": "Manage your coach profile and application preferences.",
+        "profile": "Profile",
+        "fullName": "Full Name",
+        "businessName": "Business Name",
+        "website": "Website",
+        "specialties": "Specialties",
+        "specialtiesPlaceholder": "e.g. Hypertrophy, Powerlifting",
+        "logo": "Coach Logo",
+        "save": "Save Changes",
+        "success": "Settings updated successfully!",
+        "error": "Failed to update settings.",
+        "preferences": "Preferences",
+        "language": "Language",
+        "units": "Units System",
+        "metric": "Metric (kg, cm)",
+        "imperial": "Imperial (lb, in)"
     }
 }
