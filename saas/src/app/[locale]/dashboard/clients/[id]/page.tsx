@@ -75,7 +75,7 @@ export default async function ClientProfilePage({
     const lastSync = activities?.[0]
 
     return (
-        <div className="p-8 max-w-7xl mx-auto space-y-12">
+        <div className="max-w-7xl mx-auto space-y-12">
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                 <div className="space-y-4">
@@ -104,32 +104,34 @@ export default async function ClientProfilePage({
 
             {/* Tabs */}
             <Tabs defaultValue="summary" className="space-y-10" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-                <TabsList className="bg-slate-900 border-slate-800 p-1.5 h-auto rounded-2xl">
-                    <TabsTrigger value="summary" className={cn(
-                        "px-8 py-3 rounded-xl data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all font-bold text-[10px]",
-                        locale !== 'ar' && "uppercase tracking-widest"
-                    )}>
-                        {t("tabs.summary")}
-                    </TabsTrigger>
-                    <TabsTrigger value="analytics" className={cn(
-                        "px-8 py-3 rounded-xl data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all font-bold text-[10px]",
-                        locale !== 'ar' && "uppercase tracking-widest"
-                    )}>
-                        {t("tabs.analytics")}
-                    </TabsTrigger>
-                    <TabsTrigger value="program" className={cn(
-                        "px-8 py-3 rounded-xl data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all font-bold text-[10px]",
-                        locale !== 'ar' && "uppercase tracking-widest"
-                    )}>
-                        {t("tabs.program")}
-                    </TabsTrigger>
-                    <TabsTrigger value="history" className={cn(
-                        "px-8 py-3 rounded-xl data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all font-bold text-[10px]",
-                        locale !== 'ar' && "uppercase tracking-widest"
-                    )}>
-                        {t("tabs.history")}
-                    </TabsTrigger>
-                </TabsList>
+                <div className="overflow-x-auto scrollbar-none pb-2">
+                    <TabsList className="bg-slate-900 border-slate-800 p-1.5 h-auto rounded-2xl inline-flex">
+                        <TabsTrigger value="summary" className={cn(
+                            "px-8 py-3 rounded-xl data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all font-bold text-[10px] shrink-0",
+                            locale !== 'ar' && "uppercase tracking-widest"
+                        )}>
+                            {t("tabs.summary")}
+                        </TabsTrigger>
+                        <TabsTrigger value="analytics" className={cn(
+                            "px-8 py-3 rounded-xl data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all font-bold text-[10px] shrink-0",
+                            locale !== 'ar' && "uppercase tracking-widest"
+                        )}>
+                            {t("tabs.analytics")}
+                        </TabsTrigger>
+                        <TabsTrigger value="program" className={cn(
+                            "px-8 py-3 rounded-xl data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all font-bold text-[10px] shrink-0",
+                            locale !== 'ar' && "uppercase tracking-widest"
+                        )}>
+                            {t("tabs.program")}
+                        </TabsTrigger>
+                        <TabsTrigger value="history" className={cn(
+                            "px-8 py-3 rounded-xl data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all font-bold text-[10px] shrink-0",
+                            locale !== 'ar' && "uppercase tracking-widest"
+                        )}>
+                            {t("tabs.history")}
+                        </TabsTrigger>
+                    </TabsList>
+                </div>
 
                 <TabsContent value="summary" className="space-y-8 outline-none">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

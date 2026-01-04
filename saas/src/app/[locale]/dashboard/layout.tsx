@@ -72,7 +72,7 @@ export default async function DashboardLayout({
             )}
             <Sidebar isAdmin={!!admin} isImpersonating={!!impersonatedCoachId} />
             <div className="lg:ps-64 flex flex-col min-h-screen">
-                <main className="flex-1">
+                <main className="flex-1 p-4 md:p-8 pt-20 lg:pt-8">
                     {children}
                 </main>
             </div>

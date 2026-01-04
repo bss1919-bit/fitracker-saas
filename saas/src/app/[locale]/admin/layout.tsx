@@ -37,7 +37,7 @@ export default async function AdminLayout({
         <div className="min-h-screen bg-slate-950">
             <Sidebar isAdmin={true} /> {/* For now reuse sidebar, but will adapt it */}
             <div className="lg:ps-64 flex flex-col min-h-screen">
-                <main className="flex-1">
+                <main className="flex-1 p-4 md:p-8 pt-20 lg:pt-8">
                     {children}
                 </main>
             </div>

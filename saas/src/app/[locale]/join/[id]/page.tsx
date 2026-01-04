@@ -37,6 +37,7 @@ export default async function JoinPage({
                             src={coach.logo_url}
                             alt={coachName}
                             fill
+                            sizes="96px"
                             className="object-cover"
                         />
                     </div>

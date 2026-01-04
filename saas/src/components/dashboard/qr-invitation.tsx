@@ -34,8 +34,11 @@ export function QRInvitation({ coachId }: QRInvitationProps) {
 
     return (
         <Card className="bg-slate-900 border-slate-800 text-white rounded-3xl overflow-hidden shadow-2xl shadow-black/50 border-2 border-indigo-500/10">
-            <CardHeader className="bg-slate-950/50 border-b border-slate-800 text-center py-6">
-                <CardTitle className="text-xs font-black uppercase tracking-widest text-slate-400">{t("invite.title")}</CardTitle>
+            <CardHeader className="bg-slate-950/50 border-b border-slate-800 p-6">
+                <CardTitle className="text-2xl font-black text-white flex items-center gap-3 leading-tight">
+                    <Copy size={24} className="text-indigo-400" />
+                    {t("invite.title")}
+                </CardTitle>
             </CardHeader>
             <CardContent className="flex flex-col items-center space-y-8 p-8">
                 <div className="p-4 bg-white rounded-2xl shadow-2xl shadow-indigo-500/20">

@@ -46,7 +46,6 @@ export function OnboardingWizard() {
     })
 
     async function onSubmit(values: z.infer<typeof onboardingSchema>) {
-        console.log("Submitting form...", values);
         if (step === 1) {
             setStep(2);
             return;
@@ -54,7 +53,6 @@ export function OnboardingWizard() {
 
         // Final Submission
         try {
-            console.log("Final submission step");
             const { data: { user } } = await supabase.auth.getUser();
             if (!user) throw new Error(t("noUser"));
 

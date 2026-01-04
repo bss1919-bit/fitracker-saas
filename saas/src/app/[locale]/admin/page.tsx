@@ -53,7 +53,7 @@ export default async function AdminDashboard({
     ]
 
     return (
-        <div className="p-8 max-w-7xl mx-auto space-y-12">
+        <div className="max-w-7xl mx-auto space-y-12">
             <header className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                 <div>
                     <h1 className="text-3xl font-bold tracking-tight text-white mb-2">

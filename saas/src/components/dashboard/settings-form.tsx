@@ -126,14 +126,16 @@ export function SettingsForm({ initialData }: SettingsFormProps) {
 
     return (
         <Tabs defaultValue="profile" className="w-full" dir={isRtl ? 'rtl' : 'ltr'}>
-            <TabsList className="bg-slate-900 border-slate-800 mb-8 p-1">
-                <TabsTrigger value="profile" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white flex gap-2">
-                    <User size={16} /> {t("profile")}
-                </TabsTrigger>
-                <TabsTrigger value="preferences" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white flex gap-2">
-                    <Settings2 size={16} /> {t("preferences")}
-                </TabsTrigger>
-            </TabsList>
+            <div className="overflow-x-auto scrollbar-none pb-2">
+                <TabsList className="bg-slate-900 border-slate-800 mb-8 p-1 inline-flex shrink-0">
+                    <TabsTrigger value="profile" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white flex gap-2 shrink-0 px-6">
+                        <User size={16} /> {t("profile")}
+                    </TabsTrigger>
+                    <TabsTrigger value="preferences" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white flex gap-2 shrink-0 px-6">
+                        <Settings2 size={16} /> {t("preferences")}
+                    </TabsTrigger>
+                </TabsList>
+            </div>
 
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
