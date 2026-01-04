@@ -49,9 +49,12 @@ export function RecentActivity({ activities, locale }: RecentActivityProps) {
                         {getIcon(activity.data_type)}
                     </div>
 
-                    <div className="flex-1 min-w-0">
+                    <div className="flex-1 min-w-0 font-bold">
                         <div className="flex items-center justify-between gap-4 mb-1">
-                            <p className="text-sm font-bold text-white uppercase tracking-tight truncate">
+                            <p className={cn(
+                                "text-sm font-bold text-white truncate",
+                                locale !== 'ar' && "uppercase tracking-tight"
+                            )}>
                                 {activitiesT.has(activity.data_type) ? activitiesT(activity.data_type) : activity.data_type.replace("_", " ")}
                             </p>
                             <p className={cn(

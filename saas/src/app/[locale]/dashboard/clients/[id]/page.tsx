@@ -8,6 +8,7 @@ import { Calendar, Mail, FileText, Activity, Settings } from "lucide-react"
 import { RecentActivity } from "@/components/clients/activity/recent-activity"
 import { AssignProgramModal } from "@/components/clients/assign-program-modal"
 import { ClientAnalytics } from "@/components/clients/client-analytics"
+import { cn } from "@/lib/utils"
 
 export default async function ClientProfilePage({
     params
@@ -102,26 +103,41 @@ export default async function ClientProfilePage({
 
             {/* Tabs */}
             <Tabs defaultValue="summary" className="space-y-10" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-                <TabsList className="bg-slate-900 border-slate-800 p-1 h-auto rounded-2xl">
-                    <TabsTrigger value="summary" className="px-8 py-3 rounded-xl data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all font-bold uppercase text-[10px] tracking-widest">
+                <TabsList className="bg-slate-900 border-slate-800 p-1.5 h-auto rounded-2xl">
+                    <TabsTrigger value="summary" className={cn(
+                        "px-8 py-3 rounded-xl data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all font-bold text-[10px]",
+                        locale !== 'ar' && "uppercase tracking-widest"
+                    )}>
                         {t("tabs.summary")}
                     </TabsTrigger>
-                    <TabsTrigger value="analytics" className="px-8 py-3 rounded-xl data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all font-bold uppercase text-[10px] tracking-widest">
+                    <TabsTrigger value="analytics" className={cn(
+                        "px-8 py-3 rounded-xl data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all font-bold text-[10px]",
+                        locale !== 'ar' && "uppercase tracking-widest"
+                    )}>
                         {t("tabs.analytics")}
                     </TabsTrigger>
-                    <TabsTrigger value="program" className="px-8 py-3 rounded-xl data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all font-bold uppercase text-[10px] tracking-widest">
+                    <TabsTrigger value="program" className={cn(
+                        "px-8 py-3 rounded-xl data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all font-bold text-[10px]",
+                        locale !== 'ar' && "uppercase tracking-widest"
+                    )}>
                         {t("tabs.program")}
                     </TabsTrigger>
-                    <TabsTrigger value="history" className="px-8 py-3 rounded-xl data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all font-bold uppercase text-[10px] tracking-widest">
+                    <TabsTrigger value="history" className={cn(
+                        "px-8 py-3 rounded-xl data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all font-bold text-[10px]",
+                        locale !== 'ar' && "uppercase tracking-widest"
+                    )}>
                         {t("tabs.history")}
                     </TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="summary" className="space-y-8 outline-none">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <Card className="bg-slate-900 border-slate-800 text-white rounded-3xl overflow-hidden shadow-2xl shadow-black/50 border-2 border-indigo-500/10">
+                        <Card className="bg-slate-900 border-slate-800 text-white rounded-3xl overflow-hidden shadow-2xl shadow-black/50 border-2 border-indigo-500/10 transition-all hover:border-indigo-500/20">
                             <CardHeader className="bg-slate-950/50 border-b border-slate-800">
-                                <CardTitle className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2">
+                                <CardTitle className={cn(
+                                    "text-[10px] font-bold text-slate-500 flex items-center gap-2",
+                                    locale !== 'ar' && "uppercase tracking-[0.2em]"
+                                )}>
                                     <Activity size={14} className="text-indigo-500" />
                                     {t("profile.lastActivity")}
                                 </CardTitle>
@@ -129,7 +145,10 @@ export default async function ClientProfilePage({
                             <CardContent className="p-8">
                                 {lastSync ? (
                                     <>
-                                        <p className="text-3xl font-bold text-white uppercase tracking-tighter italic truncate">
+                                        <p className={cn(
+                                            "text-3xl font-bold text-white tracking-tighter truncate",
+                                            locale !== 'ar' && "uppercase italic"
+                                        )}>
                                             {activitiesT.has(lastSync.data_type) ? activitiesT(lastSync.data_type) : lastSync.data_type.replace("_", " ")}
                                         </p>
                                         <p className="text-xs text-slate-500 mt-2 font-medium">
@@ -138,40 +157,58 @@ export default async function ClientProfilePage({
                                     </>
                                 ) : (
                                     <>
-                                        <p className="text-3xl font-bold text-white uppercase tracking-tighter italic">{t("profile.noActivity")}</p>
+                                        <p className={cn(
+                                            "text-3xl font-bold text-white tracking-tighter",
+                                            locale !== 'ar' && "uppercase italic"
+                                        )}>{t("profile.noActivity")}</p>
                                         <p className="text-xs text-slate-500 mt-2 font-medium">{t("profile.waitingSync")}</p>
                                     </>
                                 )}
                             </CardContent>
                         </Card>
 
-                        <Card className="md:col-span-2 bg-slate-900 border-slate-800 text-white rounded-3xl overflow-hidden shadow-2xl shadow-black/50 border-2 border-indigo-500/10">
+                        <Card className="md:col-span-2 bg-slate-900 border-slate-800 text-white rounded-3xl overflow-hidden shadow-2xl shadow-black/50 border-2 border-indigo-500/10 transition-all hover:border-indigo-500/20">
                             <CardHeader className="bg-slate-950/50 border-b border-slate-800">
-                                <CardTitle className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2">
+                                <CardTitle className={cn(
+                                    "text-[10px] font-bold text-slate-500 flex items-center gap-2",
+                                    locale !== 'ar' && "uppercase tracking-[0.2em]"
+                                )}>
                                     <FileText size={14} className="text-indigo-500" />
                                     {t("profile.notes")}
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="p-8">
-                                <p className="text-lg font-medium text-slate-300 leading-relaxed italic">
+                                <p className={cn(
+                                    "text-lg font-medium text-slate-300 leading-relaxed",
+                                    locale !== 'ar' && "italic"
+                                )}>
                                     {client.notes || t("profile.noNotes")}
                                 </p>
                             </CardContent>
                         </Card>
 
-                        <Card className="bg-slate-900 border-slate-800 text-white rounded-3xl overflow-hidden shadow-2xl shadow-black/50 border-2 border-indigo-500/10">
+                        <Card className="bg-slate-900 border-slate-800 text-white rounded-3xl overflow-hidden shadow-2xl shadow-black/50 border-2 border-indigo-500/10 transition-all hover:border-indigo-500/20">
                             <CardHeader className="bg-slate-950/50 border-b border-slate-800">
-                                <CardTitle className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2">
+                                <CardTitle className={cn(
+                                    "text-[10px] font-bold text-slate-500 flex items-center gap-2",
+                                    locale !== 'ar' && "uppercase tracking-[0.2em]"
+                                )}>
                                     <Settings size={14} className="text-indigo-500" />
                                     {t("profile.syncConfiguration")}
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="p-6 space-y-4">
                                 <div className="p-4 bg-slate-950 rounded-xl border border-slate-800 space-y-1">
-                                    <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">{t("profile.tokenLabel")}</p>
+                                    <p className={cn(
+                                        "text-[10px] font-bold text-slate-500",
+                                        locale !== 'ar' && "uppercase tracking-widest"
+                                    )}>{t("profile.tokenLabel")}</p>
                                     <p className="font-mono text-indigo-400 break-all select-all font-bold">{client.sync_token || "N/A"}</p>
                                 </div>
-                                <p className="text-xs text-slate-500 leading-relaxed italic">
+                                <p className={cn(
+                                    "text-xs text-slate-500 leading-relaxed",
+                                    locale !== 'ar' && "italic"
+                                )}>
                                     {t("profile.syncInstructions")}
                                 </p>
                             </CardContent>
@@ -179,7 +216,7 @@ export default async function ClientProfilePage({
 
                         <div className="md:col-span-3 space-y-6 pt-4">
                             <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                                <Activity size={20} className="text-indigo-500" />
+                                <Activity size={24} className="text-indigo-500" />
                                 {t("profile.recentActivity")}
                             </h3>
                             <RecentActivity activities={activities || []} locale={locale} />
@@ -217,17 +254,26 @@ export default async function ClientProfilePage({
                                 <CardContent className="p-8">
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                         <div className="p-6 bg-slate-950/50 border border-slate-800 rounded-2xl space-y-2">
-                                            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">{t("assign.status") || "Status"}</p>
+                                            <p className={cn(
+                                                "text-[10px] font-bold text-slate-500",
+                                                locale !== 'ar' && "uppercase tracking-widest"
+                                            )}>{t("assign.status") || "Status"}</p>
                                             <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 capitalize font-bold">
                                                 {activeAssignment.status}
                                             </Badge>
                                         </div>
                                         <div className="p-6 bg-slate-950/50 border border-slate-800 rounded-2xl space-y-2">
-                                            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">{t("assign.assignedOn") || "Assigned On"}</p>
+                                            <p className={cn(
+                                                "text-[10px] font-bold text-slate-500",
+                                                locale !== 'ar' && "uppercase tracking-widest"
+                                            )}>{t("assign.assignedOn") || "Assigned On"}</p>
                                             <p className="text-white font-bold">{activeAssignment.created_at ? new Date(activeAssignment.created_at).toLocaleDateString(locale) : "-"}</p>
                                         </div>
                                         <div className="p-6 bg-slate-950/50 border border-slate-800 rounded-2xl flex items-center justify-center">
-                                            <button className="text-indigo-400 font-bold hover:text-indigo-300 transition-colors uppercase text-[10px] tracking-widest">
+                                            <button className={cn(
+                                                "text-indigo-400 font-bold hover:text-indigo-300 transition-colors text-[10px]",
+                                                locale !== 'ar' && "uppercase tracking-widest"
+                                            )}>
                                                 {t("assign.viewFullDetails") || "View Full Details"}
                                             </button>
                                         </div>

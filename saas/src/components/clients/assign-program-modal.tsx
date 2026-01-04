@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 import {
     Dialog,
     DialogContent,
@@ -22,6 +22,7 @@ import { Input } from "@/components/ui/input"
 import { assignProgram } from "@/app/[locale]/dashboard/clients/actions"
 import { toast } from "sonner"
 import { GraduationCap, Calendar, Loader2 } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 interface AssignProgramModalProps {
     clientId: string
@@ -30,6 +31,7 @@ interface AssignProgramModalProps {
 
 export function AssignProgramModal({ clientId, programs }: AssignProgramModalProps) {
     const t = useTranslations("Clients.assign")
+    const locale = useLocale()
     const [open, setOpen] = useState(false)
     const [selectedProgram, setSelectedProgram] = useState<string>("")
     const [startDate, setStartDate] = useState<string>(new Date().toISOString().split('T')[0])
@@ -57,30 +59,36 @@ export function AssignProgramModal({ clientId, programs }: AssignProgramModalPro
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl gap-2">
+                <Button className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl gap-2 font-bold">
                     <GraduationCap size={18} />
                     {t("trigger")}
                 </Button>
             </DialogTrigger>
-            <DialogContent className="bg-slate-900 border-slate-800 text-white max-w-md">
+            <DialogContent
+                className="bg-slate-900 border-slate-800 text-white max-w-md"
+                dir={locale === 'ar' ? 'rtl' : 'ltr'}
+            >
                 <DialogHeader>
                     <DialogTitle className="text-2xl font-bold tracking-tight text-white">
                         {t("title")}
                     </DialogTitle>
                 </DialogHeader>
 
-                <div className="space-y-6 py-6">
+                <div className="space-y-6 py-6 font-bold">
                     <div className="space-y-2">
-                        <Label className="text-xs font-bold uppercase tracking-widest text-slate-500">
+                        <Label className={cn(
+                            "text-[10px] font-bold text-slate-500",
+                            locale !== 'ar' && "uppercase tracking-widest"
+                        )}>
                             {t("selectProgram")}
                         </Label>
                         <Select value={selectedProgram} onValueChange={setSelectedProgram}>
-                            <SelectTrigger className="bg-slate-950 border-slate-800 h-12 rounded-xl">
+                            <SelectTrigger className="bg-slate-950 border-slate-800 h-12 rounded-xl text-white font-medium">
                                 <SelectValue placeholder={t("placeholder")} />
                             </SelectTrigger>
                             <SelectContent className="bg-slate-950 border-slate-800">
                                 {programs.map((p) => (
-                                    <SelectItem key={p.id} value={p.id} className="text-white hover:bg-slate-800">
+                                    <SelectItem key={p.id} value={p.id} className="text-white hover:bg-slate-800 focus:bg-slate-800 font-medium">
                                         {p.name.default || p.name}
                                     </SelectItem>
                                 ))}
@@ -89,7 +97,10 @@ export function AssignProgramModal({ clientId, programs }: AssignProgramModalPro
                     </div>
 
                     <div className="space-y-2">
-                        <Label className="text-xs font-bold uppercase tracking-widest text-slate-500">
+                        <Label className={cn(
+                            "text-[10px] font-bold text-slate-500",
+                            locale !== 'ar' && "uppercase tracking-widest"
+                        )}>
                             {t("startDate")}
                         </Label>
                         <div className="relative">
@@ -98,7 +109,7 @@ export function AssignProgramModal({ clientId, programs }: AssignProgramModalPro
                                 type="date"
                                 value={startDate}
                                 onChange={(e) => setStartDate(e.target.value)}
-                                className="bg-slate-950 border-slate-800 h-12 ps-10 rounded-xl"
+                                className="bg-slate-950 border-slate-800 h-12 ps-10 rounded-xl text-white font-medium"
                             />
                         </div>
                     </div>
@@ -108,14 +119,17 @@ export function AssignProgramModal({ clientId, programs }: AssignProgramModalPro
                     <Button
                         variant="ghost"
                         onClick={() => setOpen(false)}
-                        className="flex-1 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800"
+                        className="flex-1 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 font-bold"
                     >
                         {t("cancel")}
                     </Button>
                     <Button
                         onClick={handleAssign}
                         disabled={loading}
-                        className="flex-1 bg-white text-slate-950 hover:bg-slate-200 rounded-xl font-black uppercase tracking-widest text-xs"
+                        className={cn(
+                            "flex-1 bg-white text-slate-950 hover:bg-slate-200 rounded-xl font-bold text-xs",
+                            locale !== 'ar' && "uppercase tracking-widest"
+                        )}
                     >
                         {loading ? <Loader2 className="animate-spin" size={16} /> : t("submit")}
                     </Button>
