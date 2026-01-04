@@ -86,7 +86,7 @@ export default async function ClientProfilePage({
             </div>
 
             {/* Tabs */}
-            <Tabs defaultValue="summary" className="space-y-10">
+            <Tabs defaultValue="summary" className="space-y-10" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
                 <TabsList className="bg-slate-900 border-slate-800 p-1 h-auto rounded-2xl">
                     <TabsTrigger value="summary" className="px-8 py-3 rounded-xl data-[state=active]:bg-indigo-600 data-[state=active]:text-white transition-all font-black uppercase text-[10px] tracking-widest">
                         {t("tabs.summary")}

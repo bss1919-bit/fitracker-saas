@@ -119,12 +119,12 @@
             "synced": "Synced {date}",
             "syncConfiguration": "Sync Configuration",
             "tokenLabel": "Client Sync Token",
-            "syncInstructions": "The client should enter this token in the mobile app to sync their data with your dashboard.",
-            "analytics": {
-                "volumeTitle": "Training Volume",
-                "frequencyTitle": "Workout Frequency",
-                "noData": "No data available for analytics yet. Once the client syncs their workouts, you'll see charts here."
-            }
+            "syncInstructions": "The client should enter this token in the mobile app to sync their data with your dashboard."
+        },
+        "analytics": {
+            "volumeTitle": "Training Volume",
+            "frequencyTitle": "Workout Frequency",
+            "noData": "No data available for analytics yet. Once the client syncs their workouts, you'll see charts here."
         },
         "assign": {
             "trigger": "Assign Program",

@@ -144,7 +144,7 @@ export function OnboardingWizard() {
                                             type="file"
                                             accept="image/*"
                                             onChange={(e) => setLogoFile(e.target.files?.[0] || null)}
-                                            className="bg-slate-950 border-slate-800 cursor-pointer text-slate-400 file:text-indigo-400 file:bg-slate-900 file:border-0 file:mr-4 file:px-4 file:py-2 file:rounded-md hover:file:bg-slate-800"
+                                            className="bg-slate-950 border-slate-800 cursor-pointer text-slate-400 file:text-indigo-400 file:bg-slate-900 file:border-0 file:me-4 file:px-4 file:py-2 file:rounded-md hover:file:bg-slate-800"
                                         />
                                     </FormControl>
                                     <FormDescription>{t('logoDescription')}</FormDescription>
@@ -189,7 +189,7 @@ export function OnboardingWizard() {
                                     {t('back')}
                                 </Button>
                             )}
-                            <Button type="submit" disabled={isUploading} className="ml-auto bg-indigo-600 hover:bg-indigo-700 text-white">
+                            <Button type="submit" disabled={isUploading} className="ms-auto bg-indigo-600 hover:bg-indigo-700 text-white">
                                 {isUploading ? t('uploading') : (step === 2 ? t('finish') : t('next'))}
                             </Button>
                         </div>

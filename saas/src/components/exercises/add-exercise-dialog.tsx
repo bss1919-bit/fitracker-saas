@@ -89,8 +89,8 @@ export function AddExerciseDialog() {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-lg shadow-indigo-500/20 px-6">
-                    <Plus className="mr-2" size={18} />
+                <Button className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold h-10 px-4 rounded-xl shadow-lg shadow-indigo-500/20 transition-all hover:scale-[1.02]">
+                    <Plus className="me-2" size={18} />
                     {t("addExercise")}
                 </Button>
             </DialogTrigger>
@@ -160,8 +160,8 @@ export function AddExerciseDialog() {
                             )}
                         />
                         <DialogFooter className="pt-4">
-                            <Button type="submit" disabled={loading} className="w-full bg-indigo-600 hover:bg-indigo-700">
-                                {loading ? <Loader2 className="animate-spin mr-2" size={18} /> : null}
+                            <Button type="submit" disabled={loading} className="w-full bg-indigo-600 hover:bg-indigo-700 h-12 rounded-xl text-white font-bold shadow-lg shadow-indigo-500/20">
+                                {loading ? <Loader2 className="animate-spin me-2" size={18} /> : null}
                                 {t("form.submit")}
                             </Button>
                         </DialogFooter>

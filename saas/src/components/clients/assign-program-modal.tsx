@@ -64,14 +64,14 @@ export function AssignProgramModal({ clientId, programs }: AssignProgramModalPro
             </DialogTrigger>
             <DialogContent className="bg-slate-900 border-slate-800 text-white max-w-md">
                 <DialogHeader>
-                    <DialogTitle className="text-2xl font-black uppercase tracking-tight italic">
+                    <h2 className="text-2xl font-bold tracking-tight text-white">
                         {t("title")}
-                    </DialogTitle>
+                    </h2>
                 </DialogHeader>
 
                 <div className="space-y-6 py-6">
                     <div className="space-y-2">
-                        <Label className="text-xs font-black uppercase tracking-widest text-slate-500">
+                        <Label className="text-xs font-bold uppercase tracking-widest text-slate-500">
                             {t("selectProgram")}
                         </Label>
                         <Select value={selectedProgram} onValueChange={setSelectedProgram}>
@@ -89,16 +89,16 @@ export function AssignProgramModal({ clientId, programs }: AssignProgramModalPro
                     </div>
 
                     <div className="space-y-2">
-                        <Label className="text-xs font-black uppercase tracking-widest text-slate-500">
+                        <Label className="text-xs font-bold uppercase tracking-widest text-slate-500">
                             {t("startDate")}
                         </Label>
                         <div className="relative">
-                            <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={16} />
+                            <Calendar className="absolute start-3 top-1/2 -translate-y-1/2 text-slate-500" size={16} />
                             <Input
                                 type="date"
                                 value={startDate}
                                 onChange={(e) => setStartDate(e.target.value)}
-                                className="bg-slate-950 border-slate-800 h-12 pl-10 rounded-xl"
+                                className="bg-slate-950 border-slate-800 h-12 ps-10 rounded-xl"
                             />
                         </div>
                     </div>

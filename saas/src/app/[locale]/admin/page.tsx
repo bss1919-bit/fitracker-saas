@@ -95,11 +95,11 @@ export default async function AdminDashboard({
                     <Table>
                         <TableHeader className="bg-slate-950">
                             <TableRow className="border-slate-800">
-                                <TableHead className="text-slate-400">{t("table.coach")}</TableHead>
-                                <TableHead className="text-slate-400">{t("table.email")}</TableHead>
-                                <TableHead className="text-slate-400">{t("table.status")}</TableHead>
-                                <TableHead className="text-slate-400">{t("table.joined")}</TableHead>
-                                <TableHead className="text-end text-slate-400">{t("table.actions")}</TableHead>
+                                <TableHead className="text-start text-slate-400 font-medium">{t("table.coach")}</TableHead>
+                                <TableHead className="text-start text-slate-400 font-medium">{t("table.email")}</TableHead>
+                                <TableHead className="text-start text-slate-400 font-medium">{t("table.status")}</TableHead>
+                                <TableHead className="text-start text-slate-400 font-medium">{t("table.joined")}</TableHead>
+                                <TableHead className="text-end text-slate-400 font-medium">{t("table.actions")}</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>

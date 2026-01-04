@@ -30,10 +30,10 @@ export default async function LibraryPage() {
 
             <div className="flex items-center gap-4 bg-slate-900/50 p-4 rounded-2xl border border-slate-800">
                 <div className="relative flex-1">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
+                    <Search className="absolute start-3 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
                     <Input
                         placeholder={t("searchPlaceholder")}
-                        className="pl-10 bg-slate-950 border-slate-800 focus:ring-indigo-500 h-11"
+                        className="ps-10 bg-slate-950 border-slate-800 focus:ring-indigo-500 h-11"
                     />
                 </div>
             </div>

@@ -82,8 +82,8 @@ export function AddClientDialog() {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button className="bg-indigo-600 hover:bg-indigo-700">
-                    <Plus size={18} className="mr-2" />
+                <Button className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold h-10 px-4 rounded-xl shadow-lg shadow-indigo-500/20 transition-all hover:scale-[1.02]">
+                    <Plus size={18} className="me-2" />
                     {t("addNew")}
                 </Button>
             </DialogTrigger>
@@ -150,11 +150,7 @@ export function AddClientDialog() {
                                 </FormItem>
                             )}
                         />
-                        <Button
-                            type="submit"
-                            className="w-full bg-indigo-600 hover:bg-indigo-700"
-                            disabled={form.formState.isSubmitting}
-                        >
+                        <Button type="submit" disabled={form.formState.isSubmitting} className="w-full bg-indigo-600 hover:bg-indigo-700 h-12 rounded-xl text-white font-bold shadow-lg shadow-indigo-500/20">
                             {form.formState.isSubmitting ? "..." : t("form.submit")}
                         </Button>
                     </form>

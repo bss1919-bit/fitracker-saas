@@ -119,12 +119,12 @@
             "synced": "Sync. le {date}",
             "syncConfiguration": "Configuration Sync",
             "tokenLabel": "Jeton de Synchronisation Client",
-            "syncInstructions": "Le client doit saisir ce jeton dans l'application mobile pour synchroniser ses données avec votre tableau de bord.",
-            "analytics": {
-                "volumeTitle": "Volume d'entraînement",
-                "frequencyTitle": "Fréquence de séances",
-                "noData": "Aucune donnée disponible pour le moment. Une fois que le client aura synchronisé ses séances, vous verrez les graphiques ici."
-            }
+            "syncInstructions": "Le client doit saisir ce jeton dans l'application mobile pour synchroniser ses données avec votre tableau de bord."
+        },
+        "analytics": {
+            "volumeTitle": "Volume d'entraînement",
+            "frequencyTitle": "Fréquence de séances",
+            "noData": "Aucune donnée disponible pour le moment. Une fois que le client aura synchronisé ses séances, vous verrez les graphiques ici."
         },
         "assign": {
             "trigger": "Assigner un Programme",
