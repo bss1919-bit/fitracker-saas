@@ -4,6 +4,14 @@ import { Link } from "@/i18n/routing"
 import { Plus, Calendar, ArrowRight, Dumbbell } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { AssignProgramDialog } from "@/components/programs/assign-program-dialog"
+import { Metadata } from "next"
+
+export async function generateMetadata(): Promise<Metadata> {
+    const t = await getTranslations("Navigation")
+    return {
+        title: `${t("programs")} | FitTracker Pro`,
+    }
+}
 
 export default async function ProgramsPage() {
     const t = await getTranslations("Programs")

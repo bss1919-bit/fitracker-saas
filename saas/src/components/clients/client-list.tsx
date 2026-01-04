@@ -39,7 +39,7 @@ export function ClientList({ clients }: ClientListProps) {
                 <TableHeader className="bg-slate-950">
                     <TableRow className="border-slate-800">
                         <TableHead className="text-slate-400 font-medium">{t("table.name")}</TableHead>
-                        <TableHead className="text-slate-400 font-medium">{t("table.email")}</TableHead>
+                        <TableHead className="text-slate-400 font-medium hidden md:table-cell">{t("table.email")}</TableHead>
                         <TableHead className="text-slate-400 font-medium">{t("table.status")}</TableHead>
                         <TableHead className="text-right text-slate-400 font-medium">{t("table.actions")}</TableHead>
                     </TableRow>
@@ -50,7 +50,7 @@ export function ClientList({ clients }: ClientListProps) {
                             <TableCell className="font-medium text-white">
                                 {client.first_name} {client.last_name || ""}
                             </TableCell>
-                            <TableCell className="text-slate-400">{client.email || "-"}</TableCell>
+                            <TableCell className="text-slate-400 hidden md:table-cell">{client.email || "-"}</TableCell>
                             <TableCell>
                                 <Badge
                                     variant="outline"

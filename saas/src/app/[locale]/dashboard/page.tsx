@@ -2,6 +2,14 @@ import { getTranslations } from "next-intl/server"
 import { createClient } from "@/lib/supabase/server"
 import { QRInvitation } from "@/components/dashboard/qr-invitation"
 import { Users, Dumbbell, Calendar, ArrowUpRight, Activity } from "lucide-react"
+import { Metadata } from "next"
+
+export async function generateMetadata(): Promise<Metadata> {
+    const t = await getTranslations("Dashboard")
+    return {
+        title: `${t("title")} | FitTracker Pro`,
+    }
+}
 
 export default async function DashboardPage() {
     const t = await getTranslations("Dashboard")

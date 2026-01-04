@@ -2,6 +2,14 @@ import { createClient } from "@/lib/supabase/server"
 import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 import { SettingsForm } from "@/components/dashboard/settings-form"
+import { Metadata } from "next"
+
+export async function generateMetadata(): Promise<Metadata> {
+    const t = await getTranslations("Settings")
+    return {
+        title: `${t("title")} | FitTracker Pro`,
+    }
+}
 
 export default async function SettingsPage({
     params

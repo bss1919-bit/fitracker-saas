@@ -12,6 +12,14 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import { impersonateCoach, updateCoachStatus } from "./actions"
+import { Metadata } from "next"
+
+export async function generateMetadata(): Promise<Metadata> {
+    const t = await getTranslations("Admin")
+    return {
+        title: `${t("title")} | Admin`,
+    }
+}
 
 export default async function AdminDashboard({
     params
