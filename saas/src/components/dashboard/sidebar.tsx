@@ -72,24 +72,33 @@ export function Sidebar({ isAdmin, isImpersonating }: { isAdmin?: boolean; isImp
 
     return (
         <>
-            {/* Mobile Toggle */}
-            <button
-                className="lg:hidden fixed top-4 start-4 z-50 p-2 bg-slate-900 border border-slate-800 rounded-md text-slate-400"
-                onClick={() => setIsOpen(!isOpen)}
-            >
-                {isOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
+            {/* Mobile Toggle - Only show Menu icon when closed */}
+            {!isOpen && (
+                <button
+                    className="lg:hidden fixed top-4 start-4 z-[100] p-2 bg-slate-900 border border-slate-800 rounded-md text-slate-400"
+                    onClick={() => setIsOpen(true)}
+                >
+                    <Menu size={20} />
+                </button>
+            )}
 
             {/* Sidebar */}
             <aside className={cn(
-                "fixed inset-y-0 start-0 z-40 w-64 bg-slate-950 border-e border-slate-800 transition-transform lg:translate-x-0",
+                "fixed inset-y-0 start-0 z-[90] w-64 bg-slate-950 border-e border-slate-800 transition-transform lg:translate-x-0",
                 isOpen ? "translate-x-0" : (isRtl ? "translate-x-full" : "-translate-x-full")
             )}>
                 <div className="flex flex-col h-full">
-                    <div className="p-6">
+                    <div className="p-6 flex items-center justify-between">
                         <div className="font-black text-2xl tracking-tight text-white">
                             FitTracker <span className="text-indigo-500">Pro</span>
                         </div>
+                        {/* Close button inside sidebar for mobile */}
+                        <button
+                            className="lg:hidden p-1 text-slate-400 hover:text-white"
+                            onClick={() => setIsOpen(false)}
+                        >
+                            <X size={24} />
+                        </button>
                     </div>
 
                     <nav className="flex-1 px-4 space-y-1">
@@ -126,7 +135,7 @@ export function Sidebar({ isAdmin, isImpersonating }: { isAdmin?: boolean; isImp
             {/* Overlay */}
             {isOpen && (
                 <div
-                    className="fixed inset-0 z-30 bg-black/50 lg:hidden"
+                    className="fixed inset-0 z-[80] bg-black/50 lg:hidden"
                     onClick={() => setIsOpen(false)}
                 />
             )}

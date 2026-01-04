@@ -1,9 +1,10 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 import { Calendar as CalendarIcon, Loader2, Check } from "lucide-react"
 import { format } from "date-fns"
+import { fr, enUS, ar } from "date-fns/locale"
 import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
@@ -40,6 +41,8 @@ interface AssignProgramDialogProps {
 
 export function AssignProgramDialog({ programId, programName }: AssignProgramDialogProps) {
     const t = useTranslations("Programs")
+    const locale = useLocale()
+    const dateLocale = locale === 'fr' ? fr : locale === 'ar' ? ar : enUS
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(false)
     const [clients, setClients] = useState<any[]>([])
@@ -95,24 +98,24 @@ export function AssignProgramDialog({ programId, programName }: AssignProgramDia
                     {t("assign.button")}
                 </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px] bg-slate-900 border-slate-800 text-white">
+            <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
                     <DialogTitle>{t("assign.title")}</DialogTitle>
-                    <DialogDescription className="text-slate-400">
+                    <DialogDescription>
                         {t("assign.description", { name: programName })}
                     </DialogDescription>
                 </DialogHeader>
 
-                <div className="space-y-6 py-4">
-                    <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-300">{t("assign.selectAthlete")}</label>
+                <div className="space-y-8 p-8">
+                    <div className="space-y-3">
+                        <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest block ms-1">{t("assign.selectAthlete")}</label>
                         <Popover>
                             <PopoverTrigger asChild>
                                 <Button
                                     variant="outline"
                                     role="combobox"
                                     className={cn(
-                                        "w-full justify-between bg-slate-950 border-slate-800",
+                                        "w-full h-14 justify-between bg-slate-950 border-slate-800 rounded-2xl px-4 font-bold text-white shadow-inner",
                                         !selectedClientId && "text-muted-foreground"
                                     )}
                                 >
@@ -121,7 +124,7 @@ export function AssignProgramDialog({ programId, programName }: AssignProgramDia
                                         : t("assign.selectClientPlaceholder")}
                                 </Button>
                             </PopoverTrigger>
-                            <PopoverContent className="w-full p-0 bg-slate-900 border-slate-800" align="start">
+                            <PopoverContent className="w-full p-0 bg-slate-900 border-slate-800 rounded-2xl overflow-hidden shadow-2xl" align="start">
                                 <Command className="bg-slate-900">
                                     <CommandInput placeholder={t("assign.searchClient")} className="text-white" />
                                     <CommandList>
@@ -133,8 +136,9 @@ export function AssignProgramDialog({ programId, programName }: AssignProgramDia
                                                     value={client.id}
                                                     onSelect={(currentValue) => {
                                                         setSelectedClientId(currentValue === selectedClientId ? "" : currentValue)
+                                                        setOpen(true) // Keep modal open
                                                     }}
-                                                    className="text-white hover:bg-slate-800 cursor-pointer"
+                                                    className="text-white hover:bg-slate-800 cursor-pointer py-3 px-4 font-bold"
                                                 >
                                                     <Check
                                                         className={cn(
@@ -152,44 +156,43 @@ export function AssignProgramDialog({ programId, programName }: AssignProgramDia
                         </Popover>
                     </div>
 
-                    <div className="space-y-2 flex flex-col">
-                        <label className="text-sm font-medium text-slate-300">{t("assign.startDate")}</label>
+                    <div className="space-y-3 flex flex-col">
+                        <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest block ms-1">{t("assign.startDate")}</label>
                         <Popover>
                             <PopoverTrigger asChild>
                                 <Button
                                     variant={"outline"}
                                     className={cn(
-                                        "w-full justify-start text-left font-normal bg-slate-950 border-slate-800",
+                                        "w-full h-14 justify-start text-left font-bold bg-slate-950 border-slate-800 rounded-2xl px-4 text-white shadow-inner",
                                         !startDate && "text-muted-foreground"
                                     )}
                                 >
-                                    <CalendarIcon className="mr-2 h-4 w-4" />
-                                    {startDate ? format(startDate, "PPP") : <span>{t("assign.pickDate")}</span>}
+                                    <CalendarIcon className="mr-3 h-5 w-5 text-indigo-500" />
+                                    {startDate ? format(startDate, "PPP", { locale: dateLocale }) : <span>{t("assign.pickDate")}</span>}
                                 </Button>
                             </PopoverTrigger>
-                            <PopoverContent className="w-auto p-0 bg-slate-900 border-slate-800" align="start">
+                            <PopoverContent className="w-auto p-0 border-none bg-transparent shadow-2xl" align="start">
                                 <Calendar
                                     mode="single"
                                     selected={startDate}
                                     onSelect={(date) => date && setStartDate(date)}
                                     initialFocus
-                                    className="bg-slate-900 text-white"
                                 />
                             </PopoverContent>
                         </Popover>
                     </div>
-                </div>
 
-                <DialogFooter>
-                    <Button
-                        onClick={handleAssign}
-                        disabled={loading || !selectedClientId}
-                        className="w-full bg-indigo-600 hover:bg-indigo-700"
-                    >
-                        {loading ? <Loader2 className="animate-spin mr-2" size={18} /> : null}
-                        {t("assign.confirm")}
-                    </Button>
-                </DialogFooter>
+                    <div className="pt-4">
+                        <Button
+                            onClick={handleAssign}
+                            disabled={loading || !selectedClientId}
+                            className="w-full h-14 bg-indigo-600 hover:bg-indigo-700 rounded-2xl text-white font-black uppercase tracking-widest text-[10px] shadow-lg shadow-indigo-600/20 transition-all hover:scale-[1.02]"
+                        >
+                            {loading ? <Loader2 className="animate-spin mr-2" size={20} /> : null}
+                            {t("assign.confirm")}
+                        </Button>
+                    </div>
+                </div>
             </DialogContent>
         </Dialog>
     )

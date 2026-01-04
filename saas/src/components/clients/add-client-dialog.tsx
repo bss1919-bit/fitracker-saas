@@ -87,24 +87,52 @@ export function AddClientDialog() {
                     {t("addNew")}
                 </Button>
             </DialogTrigger>
-            <DialogContent className="bg-slate-900 border-slate-800 text-white">
+            <DialogContent>
                 <DialogHeader>
                     <DialogTitle>{t("addNew")}</DialogTitle>
-                    <DialogDescription className="text-slate-400">
+                    <DialogDescription>
                         {t("form.addNewDescription")}
                     </DialogDescription>
                 </DialogHeader>
-                <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                        <div className="grid grid-cols-2 gap-4">
+                <div className="p-8">
+                    <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                            <div className="grid grid-cols-2 gap-4">
+                                <FormField
+                                    control={form.control}
+                                    name="firstName"
+                                    render={({ field }) => (
+                                        <FormItem className="space-y-3">
+                                            <FormLabel className="text-[10px] font-black text-slate-500 uppercase tracking-widest block ms-1">{t("form.firstName")}</FormLabel>
+                                            <FormControl>
+                                                <Input {...field} className="bg-slate-950 border-slate-800 h-14 rounded-2xl font-bold px-4 focus:ring-indigo-500/20 shadow-inner" />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="lastName"
+                                    render={({ field }) => (
+                                        <FormItem className="space-y-3">
+                                            <FormLabel className="text-[10px] font-black text-slate-500 uppercase tracking-widest block ms-1">{t("form.lastName")}</FormLabel>
+                                            <FormControl>
+                                                <Input {...field} className="bg-slate-950 border-slate-800 h-14 rounded-2xl font-bold px-4 focus:ring-indigo-500/20 shadow-inner" />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
                             <FormField
                                 control={form.control}
-                                name="firstName"
+                                name="email"
                                 render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>{t("form.firstName")}</FormLabel>
+                                    <FormItem className="space-y-3">
+                                        <FormLabel className="text-[10px] font-black text-slate-500 uppercase tracking-widest block ms-1">{t("form.email")}</FormLabel>
                                         <FormControl>
-                                            <Input {...field} className="bg-slate-950 border-slate-800" />
+                                            <Input {...field} className="bg-slate-950 border-slate-800 h-14 rounded-2xl font-bold px-4 focus:ring-indigo-500/20 shadow-inner" />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -112,49 +140,23 @@ export function AddClientDialog() {
                             />
                             <FormField
                                 control={form.control}
-                                name="lastName"
+                                name="notes"
                                 render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>{t("form.lastName")}</FormLabel>
+                                    <FormItem className="space-y-3">
+                                        <FormLabel className="text-[10px] font-black text-slate-500 uppercase tracking-widest block ms-1">{t("form.notes")}</FormLabel>
                                         <FormControl>
-                                            <Input {...field} className="bg-slate-950 border-slate-800" />
+                                            <Input {...field} className="bg-slate-950 border-slate-800 h-14 rounded-2xl font-bold px-4 focus:ring-indigo-500/20 shadow-inner" />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
                                 )}
                             />
-                        </div>
-                        <FormField
-                            control={form.control}
-                            name="email"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>{t("form.email")}</FormLabel>
-                                    <FormControl>
-                                        <Input {...field} className="bg-slate-950 border-slate-800" />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="notes"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>{t("form.notes")}</FormLabel>
-                                    <FormControl>
-                                        <Input {...field} className="bg-slate-950 border-slate-800" />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <Button type="submit" disabled={form.formState.isSubmitting} className="w-full bg-indigo-600 hover:bg-indigo-700 h-12 rounded-xl text-white font-bold shadow-lg shadow-indigo-500/20">
-                            {form.formState.isSubmitting ? "..." : t("form.submit")}
-                        </Button>
-                    </form>
-                </Form>
+                            <Button type="submit" disabled={form.formState.isSubmitting} className="w-full bg-indigo-600 hover:bg-indigo-700 h-14 rounded-2xl text-white font-black uppercase tracking-widest text-[10px] shadow-lg shadow-indigo-600/20 transition-all hover:scale-[1.02] mt-4">
+                                {form.formState.isSubmitting ? "..." : t("form.submit")}
+                            </Button>
+                        </form>
+                    </Form>
+                </div>
             </DialogContent>
         </Dialog>
     )

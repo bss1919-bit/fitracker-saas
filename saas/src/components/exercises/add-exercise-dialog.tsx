@@ -94,79 +94,81 @@ export function AddExerciseDialog() {
                     {t("addExercise")}
                 </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[500px] bg-slate-900 border-slate-800 text-white">
+            <DialogContent className="sm:max-w-[500px]">
                 <DialogHeader>
                     <DialogTitle>{t("addExercise")}</DialogTitle>
-                    <DialogDescription className="text-slate-400">
+                    <DialogDescription>
                         {t("description")}
                     </DialogDescription>
                 </DialogHeader>
-                <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                        <FormField
-                            control={form.control}
-                            name="name"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>{t("form.name")}</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder={t("form.namePlaceholder")} className="bg-slate-950 border-slate-800 focus:ring-indigo-500" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="category"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>{t("form.category")}</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder={t("form.categoryPlaceholder")} className="bg-slate-950 border-slate-800 focus:ring-indigo-500" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="videoUrl"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>{t("form.videoUrl")}</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder={t("form.videoUrlPlaceholder")} className="bg-slate-950 border-slate-800 focus:ring-indigo-500" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="instructions"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>{t("form.instructions")}</FormLabel>
-                                    <FormControl>
-                                        <Textarea
-                                            placeholder={t("form.instructionsPlaceholder")}
-                                            className="bg-slate-950 border-slate-800 focus:ring-indigo-500 min-h-[100px]"
-                                            {...field}
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <DialogFooter className="pt-4">
-                            <Button type="submit" disabled={loading} className="w-full bg-indigo-600 hover:bg-indigo-700 h-12 rounded-xl text-white font-bold shadow-lg shadow-indigo-500/20">
-                                {loading ? <Loader2 className="animate-spin me-2" size={18} /> : null}
-                                {t("form.submit")}
-                            </Button>
-                        </DialogFooter>
-                    </form>
-                </Form>
+                <div className="p-8">
+                    <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                            <FormField
+                                control={form.control}
+                                name="name"
+                                render={({ field }) => (
+                                    <FormItem className="space-y-3">
+                                        <FormLabel className="text-[10px] font-black text-slate-500 uppercase tracking-widest block ms-1">{t("form.name")}</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder={t("form.namePlaceholder")} className="bg-slate-950 border-slate-800 h-14 rounded-2xl font-bold px-4 focus:ring-indigo-500/20 shadow-inner" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="category"
+                                render={({ field }) => (
+                                    <FormItem className="space-y-3">
+                                        <FormLabel className="text-[10px] font-black text-slate-500 uppercase tracking-widest block ms-1">{t("form.category")}</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder={t("form.categoryPlaceholder")} className="bg-slate-950 border-slate-800 h-14 rounded-2xl font-bold px-4 focus:ring-indigo-500/20 shadow-inner" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="videoUrl"
+                                render={({ field }) => (
+                                    <FormItem className="space-y-3">
+                                        <FormLabel className="text-[10px] font-black text-slate-500 uppercase tracking-widest block ms-1">{t("form.videoUrl")}</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder={t("form.videoUrlPlaceholder")} className="bg-slate-950 border-slate-800 h-14 rounded-2xl font-bold px-4 focus:ring-indigo-500/20 shadow-inner" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="instructions"
+                                render={({ field }) => (
+                                    <FormItem className="space-y-3">
+                                        <FormLabel className="text-[10px] font-black text-slate-500 uppercase tracking-widest block ms-1">{t("form.instructions")}</FormLabel>
+                                        <FormControl>
+                                            <Textarea
+                                                placeholder={t("form.instructionsPlaceholder")}
+                                                className="bg-slate-950 border-slate-800 rounded-2xl font-bold p-4 focus:ring-indigo-500/20 shadow-inner min-h-[120px]"
+                                                {...field}
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <div className="pt-4">
+                                <Button type="submit" disabled={loading} className="w-full bg-indigo-600 hover:bg-indigo-700 h-14 rounded-2xl text-white font-black uppercase tracking-widest text-[10px] shadow-lg shadow-indigo-600/20 transition-all hover:scale-[1.02]">
+                                    {loading ? <Loader2 className="animate-spin me-2" size={20} /> : null}
+                                    {t("form.submit")}
+                                </Button>
+                            </div>
+                        </form>
+                    </Form>
+                </div>
             </DialogContent>
         </Dialog>
     )
