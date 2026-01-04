@@ -16,6 +16,13 @@ import {
 import { DragDropContext, Droppable, Draggable, DropResult } from "@hello-pangea/dnd"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 import { Database } from "@/types/supabase"
 import { toast } from "sonner"
 import { useRouter } from "@/i18n/routing"
@@ -304,24 +311,20 @@ export function WorkoutEditor({ initialData, exercises }: WorkoutEditorProps) {
                         </div>
                     </div>
                     <div className="flex items-center gap-4 w-full md:w-auto">
-                        <div className="flex flex-col gap-1">
+                        <div className="flex flex-col gap-1 min-w-[200px]">
                             <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest ml-1">{t("frequency")}</span>
-                            <div className="flex items-center bg-slate-950/80 rounded-2xl p-1 border border-slate-800 backdrop-blur-sm shadow-inner">
-                                {[1, 2, 3, 4, 5, 6, 7].map(f => (
-                                    <button
-                                        key={f}
-                                        onClick={() => setFrequency(f)}
-                                        className={cn(
-                                            "w-9 h-9 rounded-xl text-[11px] font-black transition-all duration-200",
-                                            frequency === f
-                                                ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/20 scale-105"
-                                                : "text-slate-500 hover:text-slate-300 hover:bg-slate-900"
-                                        )}
-                                    >
-                                        {f}
-                                    </button>
-                                ))}
-                            </div>
+                            <Select value={frequency.toString()} onValueChange={(val) => setFrequency(parseInt(val))}>
+                                <SelectTrigger className="bg-slate-950 border-slate-800 h-10 rounded-xl text-xs font-bold text-white shadow-inner focus:ring-indigo-500/50">
+                                    <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent className="bg-slate-950 border-slate-800">
+                                    {[1, 2, 3, 4, 5, 6, 7].map(f => (
+                                        <SelectItem key={f} value={f.toString()} className="text-white hover:bg-slate-800 text-xs">
+                                            {t("daysPerWeek", { count: f })}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
                         </div>
                         <Button
                             onClick={saveProgram}
